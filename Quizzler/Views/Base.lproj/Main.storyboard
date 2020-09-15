@@ -17,11 +17,53 @@
                     </tabBar>
                     <connections>
                         <segue destination="UIt-Qo-RFF" kind="relationship" relationship="viewControllers" id="uTb-GF-M9A"/>
+                        <segue destination="xHx-GO-BlY" kind="relationship" relationship="viewControllers" id="XEJ-7z-D9h"/>
+                        <segue destination="UKF-kj-MQh" kind="relationship" relationship="viewControllers" id="4Lc-Do-f0e"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QhR-eJ-a0j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-224" y="97"/>
+        </scene>
+        <!--CREATE QUIZ-->
+        <scene sceneID="MYr-mF-ZaI">
+            <objects>
+                <tableViewController hidesBottomBarWhenPushed="YES" id="bOi-X2-mRv" customClass="CreateViewController" customModule="Quizzler" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Map-WQ-bjJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="bOi-X2-mRv" id="E4z-dp-9G7"/>
+                            <outlet property="delegate" destination="bOi-X2-mRv" id="1cR-Zy-vwK"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="CREATE QUIZ" id="g4I-zm-4mB">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="aGR-cg-lvn"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wqr-sA-I7d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="591" y="856"/>
+        </scene>
+        <!--Saved-->
+        <scene sceneID="bGG-9z-jdV">
+            <objects>
+                <tableViewController id="UKF-kj-MQh" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ghN-d6-lxM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="UKF-kj-MQh" id="CKU-ys-lYm"/>
+                            <outlet property="delegate" destination="UKF-kj-MQh" id="D2M-HF-ige"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Saved" image="bookmark.fill" catalog="system" id="bFQ-ux-bGS"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6PI-9l-IPj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1428.985507246377" y="855.80357142857144"/>
         </scene>
         <!--Home-->
         <scene sceneID="eHC-IE-mXp">
@@ -40,10 +82,34 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wBQ-3Y-UVR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="614" y="95"/>
+            <point key="canvasLocation" x="-967" y="856"/>
+        </scene>
+        <!--Create-->
+        <scene sceneID="Z2T-ce-gLw">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xHx-GO-BlY" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Create" image="plus.app.fill" catalog="system" id="Rni-rp-mBn"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="C5T-gl-OSt">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bOi-X2-mRv" kind="relationship" relationship="rootViewController" id="9Ev-pL-r4b"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kfJ-Lv-cmO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-226.08695652173915" y="856.47321428571422"/>
         </scene>
     </scenes>
     <resources>
+        <image name="bookmark.fill" catalog="system" width="112" height="128"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
+        <image name="plus.app.fill" catalog="system" width="128" height="114"/>
     </resources>
 </document>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TitleCell" rowHeight="151" id="KGk-i7-Jjw" customClass="CreateTableViewCell" customModule="Quizzler" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="151"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="151"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fAe-1c-XKO">
+                        <rect key="frame" x="10" y="10" width="300" height="131"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="6UR-Vj-Oki">
+                                <rect key="frame" x="20" y="10" width="260" height="111"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quiz title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AG2-W0-msh">
+                                        <rect key="frame" x="0.0" y="0.0" width="50.5" height="14"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Give your quiz a title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N7t-Rh-WpK">
+                                        <rect key="frame" x="0.0" y="19" width="260" height="30"/>
+                                        <color key="backgroundColor" name="deepPurple"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="o2v-9H-AcS"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6wd-zY-5o9">
+                                        <rect key="frame" x="0.0" y="59" width="68.5" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Quiz description" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DcS-gr-coO">
+                                        <rect key="frame" x="0.0" y="81" width="260" height="30"/>
+                                        <color key="backgroundColor" name="deepPurple"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="HzS-QA-QLI"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="N7t-Rh-WpK" secondAttribute="trailing" id="LYP-mn-RTV"/>
+                                    <constraint firstItem="6wd-zY-5o9" firstAttribute="top" secondItem="N7t-Rh-WpK" secondAttribute="bottom" constant="10" id="VYj-WS-ko8"/>
+                                    <constraint firstItem="DcS-gr-coO" firstAttribute="top" secondItem="6wd-zY-5o9" secondAttribute="bottom" constant="5" id="aG5-O0-1nF"/>
+                                    <constraint firstAttribute="trailing" secondItem="DcS-gr-coO" secondAttribute="trailing" id="pTB-25-lIp"/>
+                                    <constraint firstItem="N7t-Rh-WpK" firstAttribute="top" secondItem="AG2-W0-msh" secondAttribute="bottom" constant="5" id="toh-lJ-GhE"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="6UR-Vj-Oki" secondAttribute="trailing" constant="20" id="2fe-Kp-5nj"/>
+                            <constraint firstAttribute="bottom" secondItem="6UR-Vj-Oki" secondAttribute="bottom" constant="10" id="8Ua-dg-pkq"/>
+                            <constraint firstItem="6UR-Vj-Oki" firstAttribute="top" secondItem="fAe-1c-XKO" secondAttribute="top" constant="10" id="l3q-3G-vAd"/>
+                            <constraint firstItem="6UR-Vj-Oki" firstAttribute="leading" secondItem="fAe-1c-XKO" secondAttribute="leading" constant="20" id="sOk-9a-yrP"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="fAe-1c-XKO" secondAttribute="bottom" constant="10" id="23j-qn-ima"/>
+                    <constraint firstItem="fAe-1c-XKO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="PbU-v0-vEf"/>
+                    <constraint firstItem="fAe-1c-XKO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="dbM-1b-qTy"/>
+                    <constraint firstAttribute="trailing" secondItem="fAe-1c-XKO" secondAttribute="trailing" constant="10" id="mwI-7q-7l8"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="bgView" destination="fAe-1c-XKO" id="Dzr-By-SyX"/>
+                <outlet property="descriptionField" destination="DcS-gr-coO" id="WM6-ju-b12"/>
+                <outlet property="titleField" destination="N7t-Rh-WpK" id="wYp-ju-94N"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="96.763392857142847"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="deepPurple">
+            <color red="0.27099999785423279" green="0.27799999713897705" blue="0.46700000762939453" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
