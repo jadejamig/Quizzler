@@ -9,21 +9,27 @@
 /* Begin PBXBuildFile section */
 		D2C186DF2510C2E700BC68AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C186DE2510C2E700BC68AE /* AppDelegate.swift */; };
 		D2C186E12510C2E700BC68AE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C186E02510C2E700BC68AE /* SceneDelegate.swift */; };
-		D2C186E32510C2E700BC68AE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C186E22510C2E700BC68AE /* ViewController.swift */; };
 		D2C186E62510C2E700BC68AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2C186E42510C2E700BC68AE /* Main.storyboard */; };
 		D2C186E82510C2EB00BC68AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2C186E72510C2EB00BC68AE /* Assets.xcassets */; };
 		D2C186EB2510C2EB00BC68AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2C186E92510C2EB00BC68AE /* LaunchScreen.storyboard */; };
+		D2C186F32510C39C00BC68AE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C186F22510C39C00BC68AE /* HomeViewController.swift */; };
+		D2C186F82510C42600BC68AE /* QuizCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C186F62510C42600BC68AE /* QuizCellTableViewCell.swift */; };
+		D2C186F92510C42600BC68AE /* QuizCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C186F72510C42600BC68AE /* QuizCellTableViewCell.xib */; };
+		D2C186FC2510C68900BC68AE /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C186FB2510C68900BC68AE /* QuizModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D2C186DB2510C2E700BC68AE /* Quizzler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quizzler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2C186DE2510C2E700BC68AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2C186E02510C2E700BC68AE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D2C186E22510C2E700BC68AE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D2C186E52510C2E700BC68AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D2C186E72510C2EB00BC68AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D2C186EA2510C2EB00BC68AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D2C186EC2510C2EB00BC68AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2C186F22510C39C00BC68AE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		D2C186F62510C42600BC68AE /* QuizCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCellTableViewCell.swift; sourceTree = "<group>"; };
+		D2C186F72510C42600BC68AE /* QuizCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuizCellTableViewCell.xib; sourceTree = "<group>"; };
+		D2C186FB2510C68900BC68AE /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +64,40 @@
 			children = (
 				D2C186DE2510C2E700BC68AE /* AppDelegate.swift */,
 				D2C186E02510C2E700BC68AE /* SceneDelegate.swift */,
-				D2C186E22510C2E700BC68AE /* ViewController.swift */,
-				D2C186E42510C2E700BC68AE /* Main.storyboard */,
+				D2C186FA2510C67500BC68AE /* Model */,
+				D2C186F42510C3F600BC68AE /* Views */,
+				D2C186F52510C3FC00BC68AE /* Controllers */,
 				D2C186E72510C2EB00BC68AE /* Assets.xcassets */,
 				D2C186E92510C2EB00BC68AE /* LaunchScreen.storyboard */,
 				D2C186EC2510C2EB00BC68AE /* Info.plist */,
 			);
 			path = Quizzler;
+			sourceTree = "<group>";
+		};
+		D2C186F42510C3F600BC68AE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D2C186E42510C2E700BC68AE /* Main.storyboard */,
+				D2C186F62510C42600BC68AE /* QuizCellTableViewCell.swift */,
+				D2C186F72510C42600BC68AE /* QuizCellTableViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D2C186F52510C3FC00BC68AE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D2C186F22510C39C00BC68AE /* HomeViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D2C186FA2510C67500BC68AE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D2C186FB2510C68900BC68AE /* QuizModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +160,7 @@
 			files = (
 				D2C186EB2510C2EB00BC68AE /* LaunchScreen.storyboard in Resources */,
 				D2C186E82510C2EB00BC68AE /* Assets.xcassets in Resources */,
+				D2C186F92510C42600BC68AE /* QuizCellTableViewCell.xib in Resources */,
 				D2C186E62510C2E700BC68AE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,9 +172,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2C186E32510C2E700BC68AE /* ViewController.swift in Sources */,
 				D2C186DF2510C2E700BC68AE /* AppDelegate.swift in Sources */,
 				D2C186E12510C2E700BC68AE /* SceneDelegate.swift in Sources */,
+				D2C186F82510C42600BC68AE /* QuizCellTableViewCell.swift in Sources */,
+				D2C186F32510C39C00BC68AE /* HomeViewController.swift in Sources */,
+				D2C186FC2510C68900BC68AE /* QuizModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
