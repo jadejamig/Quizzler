@@ -7,10 +7,9 @@
 //
 
 import UIKit
+class CreateViewController: UITableViewController{
 
-class CreateViewController: UITableViewController {
 
-    @IBOutlet weak var addButton: UIButton!
     let btn = UIButton(type: .custom)
     var questionCount: Int = 2
     override func viewDidLoad() {
@@ -32,7 +31,6 @@ class CreateViewController: UITableViewController {
         
         view.addSubview(btn)
         btn.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
             btn.widthAnchor.constraint(equalToConstant: 40),
             btn.heightAnchor.constraint(equalToConstant: 40),
@@ -41,29 +39,29 @@ class CreateViewController: UITableViewController {
         ])
         
         tableView.contentInset =  UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
+        self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
-        // 3.
         view.bringSubviewToFront(btn)
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return questionCount
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TitleCell", for: indexPath) as! CreateTableViewCell
+            cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionCell", for: indexPath) as! QuestionTableViewCell
             cell.questionLabel.text = ("Question \(indexPath.row)")
+            cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         }
     }
@@ -73,6 +71,8 @@ class CreateViewController: UITableViewController {
     //SCROLL TO THE CURRENTLY SELECTED CELL
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
+        print("cell clicked")
     }
     @objc func buttonClicked(sender: UIButton){
         print("button Clicked")
