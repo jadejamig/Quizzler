@@ -23,7 +23,7 @@ class CreateTableViewCell: UITableViewCell {
         // Initialization code
         bgView.layer.cornerRadius = bgView.frame.size.height/5
         bgView.layer.maskedCorners = [.layerMaxXMaxYCorner]
-        titleField.layer.cornerRadius = 25 //titleField.frame.size.height/2
+        titleField.layer.cornerRadius = titleField.frame.size.height/2
         descriptionField.layer.cornerRadius = descriptionField.frame.size.height/2
         
     }

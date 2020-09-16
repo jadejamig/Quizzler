@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D29BE9BE2511C32A00EC037B /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29BE9BC2511C32A00EC037B /* QuestionTableViewCell.swift */; };
+		D29BE9BF2511C32A00EC037B /* QuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D29BE9BD2511C32A00EC037B /* QuestionTableViewCell.xib */; };
 		D2C186DF2510C2E700BC68AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C186DE2510C2E700BC68AE /* AppDelegate.swift */; };
 		D2C186E12510C2E700BC68AE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C186E02510C2E700BC68AE /* SceneDelegate.swift */; };
 		D2C186E62510C2E700BC68AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2C186E42510C2E700BC68AE /* Main.storyboard */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D29BE9BC2511C32A00EC037B /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
+		D29BE9BD2511C32A00EC037B /* QuestionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionTableViewCell.xib; sourceTree = "<group>"; };
 		D2C186DB2510C2E700BC68AE /* Quizzler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quizzler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2C186DE2510C2E700BC68AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2C186E02510C2E700BC68AE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +92,8 @@
 				D2C186F72510C42600BC68AE /* QuizCellTableViewCell.xib */,
 				D2C186FD2510E1D400BC68AE /* CreateTableViewCell.swift */,
 				D2C186FE2510E1D400BC68AE /* CreateTableViewCell.xib */,
+				D29BE9BC2511C32A00EC037B /* QuestionTableViewCell.swift */,
+				D29BE9BD2511C32A00EC037B /* QuestionTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -170,6 +176,7 @@
 				D2C187002510E1D400BC68AE /* CreateTableViewCell.xib in Resources */,
 				D2C186EB2510C2EB00BC68AE /* LaunchScreen.storyboard in Resources */,
 				D2C186E82510C2EB00BC68AE /* Assets.xcassets in Resources */,
+				D29BE9BF2511C32A00EC037B /* QuestionTableViewCell.xib in Resources */,
 				D2C186F92510C42600BC68AE /* QuizCellTableViewCell.xib in Resources */,
 				D2C186E62510C2E700BC68AE /* Main.storyboard in Resources */,
 			);
@@ -183,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2C186DF2510C2E700BC68AE /* AppDelegate.swift in Sources */,
+				D29BE9BE2511C32A00EC037B /* QuestionTableViewCell.swift in Sources */,
 				D2C186E12510C2E700BC68AE /* SceneDelegate.swift in Sources */,
 				D2C187022510EDC700BC68AE /* CreateViewController.swift in Sources */,
 				D2C186F82510C42600BC68AE /* QuizCellTableViewCell.swift in Sources */,

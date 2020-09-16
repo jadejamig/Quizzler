@@ -12,11 +12,13 @@ class CreateViewController: UITableViewController {
 
     @IBOutlet weak var addButton: UIButton!
     let btn = UIButton(type: .custom)
-    
+    var questionCount: Int = 2
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.register(UINib(nibName: "CreateTableViewCell", bundle: nil), forCellReuseIdentifier: "TitleCell")
+        tableView.register(UINib(nibName: "QuestionTableViewCell", bundle: nil), forCellReuseIdentifier: "QuestionCell")
+        
         tableView.separatorStyle = .none
         self.tabBarController?.tabBar.isHidden = true
         
@@ -50,15 +52,27 @@ class CreateViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return questionCount
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TitleCell", for: indexPath) as! CreateTableViewCell
-        return cell
+        
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TitleCell", for: indexPath) as! CreateTableViewCell
+            return cell
+        }else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionCell", for: indexPath) as! QuestionTableViewCell
+            cell.questionLabel.text = ("Question \(indexPath.row)")
+            return cell
+        }
     }
 
    
     @objc func buttonClicked(sender: UIButton){
         print("button Clicked")
+        questionCount += 1
+        self.tableView.beginUpdates()
+        self.tableView.insertRows(at: [IndexPath(row: questionCount-1, section: 0)], with: .fade)
+        self.tableView.endUpdates()
+        
     }
 }
