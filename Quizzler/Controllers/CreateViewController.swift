@@ -39,6 +39,8 @@ class CreateViewController: UITableViewController {
             btn.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -15),
             btn.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant:0)
         ])
+        
+        tableView.contentInset =  UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
     }
     
     override func viewDidLayoutSubviews() {
@@ -66,13 +68,20 @@ class CreateViewController: UITableViewController {
         }
     }
 
-   
+   //MARK: - TableView Delegate Method
+    
+    //SCROLL TO THE CURRENTLY SELECTED CELL
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+    }
     @objc func buttonClicked(sender: UIButton){
         print("button Clicked")
         questionCount += 1
         self.tableView.beginUpdates()
         self.tableView.insertRows(at: [IndexPath(row: questionCount-1, section: 0)], with: .fade)
         self.tableView.endUpdates()
+        let indexPath = IndexPath(row: questionCount-1, section: 0)
+        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         
     }
 }

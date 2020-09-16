@@ -35,11 +35,4 @@ class QuestionTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func makeRoundCorners(thatView: UIView) -> UIView{
-        
-        thatView.layer.cornerRadius = thatView.frame.size.height/2
-        
-        return thatView
-    }
-    
 }
