@@ -21,20 +21,10 @@ class CreateTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        myMutableStringTitle = NSMutableAttributedString(string:titlePlaceholder)
-        myMutableStringDesc  = NSMutableAttributedString(string:descriptionPlaceholder)
-        myMutableStringTitle.addAttribute(NSAttributedString.Key.foregroundColor,
-                                          value: UIColor.white,
-                                          range:NSRange(location:0,length:titlePlaceholder.count))
-        myMutableStringDesc.addAttribute(NSAttributedString.Key.foregroundColor,
-                                        value: UIColor.white,
-                                        range:NSRange(location:0,length:descriptionPlaceholder.count))
-        titleField.attributedPlaceholder = myMutableStringTitle
-        descriptionField.attributedPlaceholder = myMutableStringDesc
-        
         bgView.layer.cornerRadius = bgView.frame.size.height/5
-        titleField.layer.cornerRadius = titleField.frame.size.height/5
-        descriptionField.layer.cornerRadius = descriptionField.frame.size.height/5
+        bgView.layer.maskedCorners = [.layerMaxXMaxYCorner]
+        titleField.layer.cornerRadius = 25 //titleField.frame.size.height/2
+        descriptionField.layer.cornerRadius = descriptionField.frame.size.height/2
         
     }
 
