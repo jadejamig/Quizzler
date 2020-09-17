@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Firebase
+import GoogleSignIn
+
 class CreateViewController: UITableViewController{
 
 
@@ -15,6 +18,7 @@ class CreateViewController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        GIDSignIn.sharedInstance()?.presentingViewController = self
         tableView.register(UINib(nibName: "CreateTableViewCell", bundle: nil), forCellReuseIdentifier: "TitleCell")
         tableView.register(UINib(nibName: "QuestionTableViewCell", bundle: nil), forCellReuseIdentifier: "QuestionCell")
         
@@ -87,5 +91,31 @@ class CreateViewController: UITableViewController{
     @IBAction func backButton(_ sender: UIBarButtonItem) {
         navigationController?.tabBarController?.selectedIndex = 0
         navigationController?.tabBarController?.tabBar.isHidden = false
+    }
+    @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
+        
+//        do {
+//            try Auth.auth().signOut()
+//            if let vc = navigationController?.viewControllers[0]{
+//                navigationController?.popToViewController(vc, animated: true)
+//
+//
+//                self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+//                if let vc = navigationController?.navigationController?.viewControllers[0]{
+//
+//                    navigationController?.navigationController?.dismiss(animated: true, completion: nil)
+//                        .popToViewController(vc, animated: true)
+//                }
+//                guard let vc = self.presentingViewController else { return }
+//
+//                while (vc.presentingViewController != nil) {
+//                    vc.dismiss(animated: true, completion: nil)
+//                }
+//                                print("logout successfuly")
+//            }
+//        } catch let signOutError as NSError {
+//            print ("Error signing out: %@", signOutError)
+//        }
+        
     }
 }

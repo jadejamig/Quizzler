@@ -38,6 +38,9 @@
                                 <state key="normal" title="REGISTER">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <segue destination="fEy-zI-5ch" kind="show" id="R8B-IC-vNt"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QUIZZLER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="38X-Zz-lqm">
                                 <rect key="frame" x="82.5" y="418" width="249" height="60"/>
@@ -60,6 +63,9 @@
                         <viewLayoutGuide key="safeArea" id="HPW-hb-ZuA"/>
                     </view>
                     <navigationItem key="navigationItem" id="Zom-gm-XWO"/>
+                    <connections>
+                        <segue destination="VpJ-rZ-Muq" kind="show" identifier="WelcomeToHome" id="698-mD-hKJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BUA-fV-0uk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -122,7 +128,46 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QhR-eJ-a0j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-224" y="97"/>
+            <point key="canvasLocation" x="-4" y="-162"/>
+        </scene>
+        <!--Register View Controller-->
+        <scene sceneID="JAE-LB-WUF">
+            <objects>
+                <viewController id="fEy-zI-5ch" customClass="RegisterViewController" customModule="Quizzler" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fB8-h5-LeN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tEA-Dw-ILm">
+                                <rect key="frame" x="157" y="398" width="100" height="100"/>
+                                <color key="backgroundColor" name="deepPurple"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="B7T-r5-Rbk"/>
+                                    <constraint firstAttribute="height" constant="100" id="px4-HC-IgR"/>
+                                </constraints>
+                                <state key="normal" title="GOOGLE">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="googleSignInMethod:" destination="fEy-zI-5ch" eventType="touchUpInside" id="6LD-Qb-iBk"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="tEA-Dw-ILm" firstAttribute="centerX" secondItem="fB8-h5-LeN" secondAttribute="centerX" id="MXv-WQ-lfT"/>
+                            <constraint firstItem="tEA-Dw-ILm" firstAttribute="centerY" secondItem="fB8-h5-LeN" secondAttribute="centerY" id="zbl-yS-rk2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="QFA-UH-vlh"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="NIL-XV-xUw"/>
+                    <connections>
+                        <segue destination="VpJ-rZ-Muq" kind="show" identifier="RegisterToHome" id="fK8-pI-PeB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d6A-Ae-vUf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1204" y="-233"/>
         </scene>
         <!--CREATE QUIZ-->
         <scene sceneID="MYr-mF-ZaI">
@@ -143,7 +188,11 @@
                                 <action selector="backButton:" destination="bOi-X2-mRv" id="xLa-WR-CmI"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="aGR-cg-lvn"/>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="aGR-cg-lvn">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="bOi-X2-mRv" id="oGB-zP-ZTj"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wqr-sA-I7d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -177,6 +226,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dAq-La-rod">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="buttonPressed:" destination="UIt-Qo-RFF" eventType="touchUpInside" id="NyI-yK-9Tn"/>
+                            </connections>
+                        </button>
                         <connections>
                             <outlet property="dataSource" destination="UIt-Qo-RFF" id="qkE-Wq-7wY"/>
                             <outlet property="delegate" destination="UIt-Qo-RFF" id="emP-8q-Nh2"/>
@@ -186,7 +243,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wBQ-3Y-UVR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-967" y="856"/>
+            <point key="canvasLocation" x="-1062" y="856"/>
         </scene>
         <!--Create-->
         <scene sceneID="Z2T-ce-gLw">
@@ -231,9 +288,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cDO-C3-uda" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-716" y="-958"/>
+            <point key="canvasLocation" x="-928" y="-958"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="fK8-pI-PeB"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="bookmark.fill" catalog="system" width="112" height="128"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
