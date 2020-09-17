@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,6 +22,8 @@
 		D2C186FF2510E1D400BC68AE /* CreateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C186FD2510E1D400BC68AE /* CreateTableViewCell.swift */; };
 		D2C187002510E1D400BC68AE /* CreateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C186FE2510E1D400BC68AE /* CreateTableViewCell.xib */; };
 		D2C187022510EDC700BC68AE /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C187012510EDC700BC68AE /* CreateViewController.swift */; };
+		D2E0B69D2512DEF20051840C /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E0B69C2512DEF20051840C /* WelcomeViewController.swift */; };
+		D2E0B69F2512DF050051840C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E0B69E2512DF050051840C /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		D2C186FD2510E1D400BC68AE /* CreateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTableViewCell.swift; sourceTree = "<group>"; };
 		D2C186FE2510E1D400BC68AE /* CreateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateTableViewCell.xib; sourceTree = "<group>"; };
 		D2C187012510EDC700BC68AE /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
+		D2E0B69C2512DEF20051840C /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		D2E0B69E2512DF050051840C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +76,6 @@
 				2D806785025DB5B2C7C3BD29 /* Pods-Quizzler.debug.xcconfig */,
 				9539B282099537E9E3CAE33B /* Pods-Quizzler.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -128,6 +131,8 @@
 			children = (
 				D2C186F22510C39C00BC68AE /* HomeViewController.swift */,
 				D2C187012510EDC700BC68AE /* CreateViewController.swift */,
+				D2E0B69C2512DEF20051840C /* WelcomeViewController.swift */,
+				D2E0B69E2512DF050051840C /* LoginViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -258,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2E0B69D2512DEF20051840C /* WelcomeViewController.swift in Sources */,
 				D2C186DF2510C2E700BC68AE /* AppDelegate.swift in Sources */,
 				D29BE9BE2511C32A00EC037B /* QuestionTableViewCell.swift in Sources */,
 				D2C186E12510C2E700BC68AE /* SceneDelegate.swift in Sources */,
@@ -265,6 +271,7 @@
 				D2C186F82510C42600BC68AE /* QuizCellTableViewCell.swift in Sources */,
 				D2C186FF2510E1D400BC68AE /* CreateTableViewCell.swift in Sources */,
 				D2C186F32510C39C00BC68AE /* HomeViewController.swift in Sources */,
+				D2E0B69F2512DF050051840C /* LoginViewController.swift in Sources */,
 				D2C186FC2510C68900BC68AE /* QuizModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

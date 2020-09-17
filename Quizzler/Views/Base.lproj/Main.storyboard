@@ -1,16 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VpJ-rZ-Muq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wMk-g9-fQi">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Welcome View Controller-->
+        <scene sceneID="OCe-Fn-eoq">
+            <objects>
+                <viewController id="wv6-tn-7bR" customClass="WelcomeViewController" customModule="Quizzler" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WjS-OM-1Ki">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ijt-HD-rw0">
+                                <rect key="frame" x="0.0" y="801" width="414" height="61"/>
+                                <color key="backgroundColor" name="deepPurple"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="61" id="tpa-Er-4YF"/>
+                                </constraints>
+                                <state key="normal" title="LOGIN">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="aPC-du-3up" kind="show" id="wuz-Lm-fMs"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LJ0-QW-CAb">
+                                <rect key="frame" x="0.0" y="732" width="414" height="61"/>
+                                <color key="backgroundColor" name="purple"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="61" id="hzc-X5-ErO"/>
+                                </constraints>
+                                <state key="normal" title="REGISTER">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QUIZZLER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="38X-Zz-lqm">
+                                <rect key="frame" x="82.5" y="418" width="249" height="60"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="50"/>
+                                <color key="textColor" name="deepPurple"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="HPW-hb-ZuA" firstAttribute="trailing" secondItem="LJ0-QW-CAb" secondAttribute="trailing" id="EwG-zx-wzf"/>
+                            <constraint firstItem="Ijt-HD-rw0" firstAttribute="leading" secondItem="HPW-hb-ZuA" secondAttribute="leading" id="FRI-SV-EgH"/>
+                            <constraint firstItem="38X-Zz-lqm" firstAttribute="centerX" secondItem="WjS-OM-1Ki" secondAttribute="centerX" id="QKe-MF-wm6"/>
+                            <constraint firstItem="38X-Zz-lqm" firstAttribute="centerY" secondItem="WjS-OM-1Ki" secondAttribute="centerY" id="Vwh-GC-XxK"/>
+                            <constraint firstItem="Ijt-HD-rw0" firstAttribute="top" secondItem="LJ0-QW-CAb" secondAttribute="bottom" constant="8" id="bs0-XU-gFI"/>
+                            <constraint firstItem="LJ0-QW-CAb" firstAttribute="leading" secondItem="HPW-hb-ZuA" secondAttribute="leading" id="g6v-WM-5ug"/>
+                            <constraint firstItem="HPW-hb-ZuA" firstAttribute="bottom" secondItem="Ijt-HD-rw0" secondAttribute="bottom" id="jWH-pe-61t"/>
+                            <constraint firstItem="HPW-hb-ZuA" firstAttribute="trailing" secondItem="Ijt-HD-rw0" secondAttribute="trailing" id="r7D-70-F2B"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="HPW-hb-ZuA"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Zom-gm-XWO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BUA-fV-0uk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3" y="-958"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="2lq-Yh-jYo">
+            <objects>
+                <viewController id="aPC-du-3up" customClass="LoginViewController" customModule="Quizzler" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vcV-GG-jvi">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zaL-H7-O4E">
+                                <rect key="frame" x="107" y="417.5" width="200" height="61"/>
+                                <color key="backgroundColor" name="deepPurple"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="61" id="3Id-Yb-RqX"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="6qs-1H-PoW"/>
+                                </constraints>
+                                <state key="normal" title="LOGIN">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="aPC-du-3up" eventType="touchUpInside" id="pP0-vh-cB7"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="zaL-H7-O4E" firstAttribute="centerY" secondItem="vcV-GG-jvi" secondAttribute="centerY" id="TQZ-Fm-ePF"/>
+                            <constraint firstItem="zaL-H7-O4E" firstAttribute="centerX" secondItem="vcV-GG-jvi" secondAttribute="centerX" id="zZh-wd-14a"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="duc-uX-RG6"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="4AJ-Wn-xyP"/>
+                    <connections>
+                        <segue destination="VpJ-rZ-Muq" kind="show" identifier="LoginToHome" id="4Bm-Rp-10Q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zrv-4n-cw6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1306" y="-233"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="uov-3f-YgG">
             <objects>
                 <tabBarController id="VpJ-rZ-Muq" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="VNF-A0-4oz"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3ZO-IW-cut">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -40,7 +138,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="CREATE QUIZ" id="g4I-zm-4mB">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="ISG-jP-h6b"/>
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="ISG-jP-h6b">
+                            <connections>
+                                <action selector="backButton:" destination="bOi-X2-mRv" id="xLa-WR-CmI"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Done" id="aGR-cg-lvn"/>
                     </navigationItem>
                 </tableViewController>
@@ -113,6 +215,24 @@
             </objects>
             <point key="canvasLocation" x="-226.08695652173915" y="856.47321428571422"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="G9X-NL-zlH">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wMk-g9-fQi" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WRM-1e-ha0">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="wv6-tn-7bR" kind="relationship" relationship="rootViewController" id="iqw-9D-MVQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cDO-C3-uda" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-716" y="-958"/>
+        </scene>
     </scenes>
     <resources>
         <image name="bookmark.fill" catalog="system" width="112" height="128"/>
@@ -120,6 +240,9 @@
         <image name="plus.app.fill" catalog="system" width="128" height="114"/>
         <namedColor name="deepPurple">
             <color red="0.27099999785423279" green="0.27799999713897705" blue="0.46700000762939453" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="purple">
+            <color red="0.45500001311302185" green="0.41600000858306885" blue="0.72899997234344482" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

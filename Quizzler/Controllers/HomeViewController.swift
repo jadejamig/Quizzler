@@ -24,6 +24,10 @@ class HomeViewController: UITableViewController {
         tableView.separatorStyle = .none
        
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.isNavigationBarHidden = true
+    }
 
     // MARK: - Table view data source
 

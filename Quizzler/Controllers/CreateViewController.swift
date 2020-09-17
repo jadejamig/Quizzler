@@ -84,4 +84,8 @@ class CreateViewController: UITableViewController{
         self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         
     }
+    @IBAction func backButton(_ sender: UIBarButtonItem) {
+        navigationController?.tabBarController?.selectedIndex = 0
+        navigationController?.tabBarController?.tabBar.isHidden = false
+    }
 }
