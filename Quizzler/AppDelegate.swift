@@ -72,6 +72,16 @@ extension AppDelegate: GIDSignInDelegate {
                 print("The user has not signed in before or they have since signed out.")
             } else {
                 print("error signing into Google \(error.localizedDescription)")
+                signIn.presentingViewController.navigationController?.isNavigationBarHidden = false
+                
+                if signIn.presentingViewController.restorationIdentifier == "Register"{
+                    let registerVC = signIn.presentingViewController as! RegisterViewController
+                    registerVC.googleButton.isEnabled = true
+                } else if signIn.presentingViewController.restorationIdentifier == "Login"{
+                    let loginVC = signIn.presentingViewController as! LoginViewController
+                    loginVC.googleButton.isEnabled = true
+                }
+                
             }
             return
         }
@@ -89,17 +99,19 @@ extension AppDelegate: GIDSignInDelegate {
             } else{
                 
                 if let newuser = authResult?.additionalUserInfo?.isNewUser{
+                    
+                    //IF ENTERED GOOGLE ACCOUNT IS NEW
                     if newuser{
                         
                         print("IS new user")
                         
                         if signIn.presentingViewController.restorationIdentifier == "Register"{
-                                
+                            
                             let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                             let tabBarVC : UITabBarController = mainStoryboardIpad.instantiateViewController(withIdentifier: "TabController") as! UITabBarController
                             tabBarVC.navigationController?.tabBarController?.tabBar.isHidden = false
-//                          tabBarVC.navigationController?.isNavigationBarHidden = false
-//                          tabBarVC.navigationController?.navigationBar.barTintColor = UIColor(named: "deepPurple")
+                            //                          tabBarVC.navigationController?.isNavigationBarHidden = false
+                            //                          tabBarVC.navigationController?.navigationBar.barTintColor = UIColor(named: "deepPurple")
                             signIn.presentingViewController.navigationController?.viewControllers[0] = tabBarVC
                             if let vc = signIn.presentingViewController.navigationController?.viewControllers[0]{
                                 signIn.presentingViewController.navigationController?.popToViewController(vc, animated: true)
@@ -108,33 +120,75 @@ extension AppDelegate: GIDSignInDelegate {
                             
                         } else if signIn.presentingViewController.restorationIdentifier == "Login"{
                             
+                            signIn.presentingViewController.navigationController?.isNavigationBarHidden = false
+                            self.userAlreadyExist(presentingVC: signIn.presentingViewController,
+                                                  title: "Could not find the account you are trying to sign in.")
+                            let user = Auth.auth().currentUser
+
+                            user?.delete { error in
+                              if let error = error {
+                                print("error deleting user")
+                              } else {
+                                print("succesfully deleted user")
+                              }
+                            }
+                            do {
+                                try Auth.auth().signOut()
+                                print("logout successfuly")
+                            } catch let signOutError as NSError {
+                                print ("Error signing out: %@", signOutError)
+                            }
+                            print("This email is already associated with another account")
+                            print("igned in from \(signIn.presentingViewController.restorationIdentifier ?? "no resto ID")")
+                            
                         }
-                   
+                        
                     } else {
-                        self.userAlreadyExist(presentingVC: signIn.presentingViewController)
-                        do {
-                            try Auth.auth().signOut()
-                            print("logout successfuly")
-                        } catch let signOutError as NSError {
-                            print ("Error signing out: %@", signOutError)
+                        
+                        // IF THE ENTERED GOOGLE ACCOUNT ALREADY EXIST
+                        
+                        if signIn.presentingViewController.restorationIdentifier == "Register"{
+                            
+                            signIn.presentingViewController.navigationController?.isNavigationBarHidden = false
+                            
+                            //make a UIAlert with function userAlreadyExist
+                            self.userAlreadyExist(presentingVC: signIn.presentingViewController,
+                                                  title: "This email is already associated with another account.")
+                            do {
+                                try Auth.auth().signOut()
+                                print("logout successfuly")
+                            } catch let signOutError as NSError {
+                                print ("Error signing out: %@", signOutError)
+                            }
+                            print("This email is already associated with another account")
+                            print("igned in from \(signIn.presentingViewController.restorationIdentifier ?? "no resto ID")")
+                            
+                        } else if signIn.presentingViewController.restorationIdentifier == "Login"{
+                            
+                            let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                            let tabBarVC : UITabBarController = mainStoryboardIpad.instantiateViewController(withIdentifier: "TabController") as! UITabBarController
+                            tabBarVC.navigationController?.tabBarController?.tabBar.isHidden = false
+                            signIn.presentingViewController.navigationController?.viewControllers[0] = tabBarVC
+                            if let vc = signIn.presentingViewController.navigationController?.viewControllers[0]{
+                                signIn.presentingViewController.navigationController?.popToViewController(vc, animated: true)
+                            }
+                            
                         }
-                        print("This email is already associated with another account")
-                        print("igned in from \(signIn.presentingViewController.restorationIdentifier ?? "no resto ID")")
-//                        signIn.presentingViewController.button
+                        
                     }
                 }
             }
         }
     }
     
-    func userAlreadyExist (presentingVC: UIViewController) {
-            let alert = UIAlertController(title: "This email is already associated with another account",
-                                          message: "",
-                                          preferredStyle: .alert)
-            let action = UIAlertAction(title: "dismiss", style: .cancel, handler: nil)
-            alert.addAction(action)
-            presentingVC.present(alert, animated: true, completion: nil)
-        }
+    func userAlreadyExist (presentingVC: UIViewController, title: String) {
+        let alert = UIAlertController(title: title,
+                                      message: "",
+                                      preferredStyle: .alert)
+        let action = UIAlertAction(title: "dismiss", style: .cancel, handler: nil)
+        alert.addAction(action)
+        presentingVC.present(alert, animated: true, completion: nil)
     }
+}
 
 

@@ -26,9 +26,6 @@ class RegisterViewController: UIViewController {
                 print("No user Logged in")
                 self.googleButton.isEnabled = true
             } else {
-//                self.performSegue(withIdentifier: "RegisterToHome", sender: self)
-//                self.checkIfNewUser()
-                
                 print("Logged in user \((Auth.auth().currentUser?.email)!)")
             }
         }
@@ -38,6 +35,7 @@ class RegisterViewController: UIViewController {
         super.viewWillAppear(true)
         self.navigationController?.isNavigationBarHidden = false
         googleButton.isEnabled = true
+//        navigationController?.navigationItem.backBarButtonItem?.isEnabled = true
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
@@ -47,8 +45,11 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func googleSignInMethod(_ sender: UIButton) {
-        GIDSignIn.sharedInstance().signIn() 
         googleButton.isEnabled = false
+        self.navigationController?.isNavigationBarHidden = true
+        GIDSignIn.sharedInstance().signIn() 
+        
+        
     }
 
     //    private func checkIfNewUser(){

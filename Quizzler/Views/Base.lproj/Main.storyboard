@@ -103,6 +103,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="4AJ-Wn-xyP"/>
                     <connections>
+                        <outlet property="googleButton" destination="zaL-H7-O4E" id="U1x-4H-OK9"/>
                         <segue destination="VpJ-rZ-Muq" kind="show" identifier="LoginToHome" id="4Bm-Rp-10Q"/>
                     </connections>
                 </viewController>
@@ -293,7 +294,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="fK8-pI-PeB"/>
+        <segue reference="4Bm-Rp-10Q"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bookmark.fill" catalog="system" width="112" height="128"/>
