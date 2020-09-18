@@ -24,14 +24,5 @@ class WelcomeViewController: UIViewController {
         if Auth.auth().currentUser != nil{
             performSegue(withIdentifier: "WelcomeToHome", sender: self)
         }
-//        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
-//            if user == nil {
-//                print("No user Logged in")
-//            } else {
-//                self.performSegue(withIdentifier: "WelcomeToHome", sender: self)
-//                print("Logged in user \((Auth.auth().currentUser?.email)!)")
-//            }
-//        }
     }
-
 }

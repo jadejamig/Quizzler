@@ -11,7 +11,7 @@
         <!--Welcome View Controller-->
         <scene sceneID="OCe-Fn-eoq">
             <objects>
-                <viewController id="wv6-tn-7bR" customClass="WelcomeViewController" customModule="Quizzler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Welcome" id="wv6-tn-7bR" customClass="WelcomeViewController" customModule="Quizzler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WjS-OM-1Ki">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -74,7 +74,7 @@
         <!--Login View Controller-->
         <scene sceneID="2lq-Yh-jYo">
             <objects>
-                <viewController id="aPC-du-3up" customClass="LoginViewController" customModule="Quizzler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="Login" storyboardIdentifier="Login" id="aPC-du-3up" customClass="LoginViewController" customModule="Quizzler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vcV-GG-jvi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -113,7 +113,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="uov-3f-YgG">
             <objects>
-                <tabBarController id="VpJ-rZ-Muq" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabController" id="VpJ-rZ-Muq" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="VNF-A0-4oz"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3ZO-IW-cut">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -133,7 +133,7 @@
         <!--Register View Controller-->
         <scene sceneID="JAE-LB-WUF">
             <objects>
-                <viewController id="fEy-zI-5ch" customClass="RegisterViewController" customModule="Quizzler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="Register" storyboardIdentifier="Register" id="fEy-zI-5ch" customClass="RegisterViewController" customModule="Quizzler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fB8-h5-LeN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -162,6 +162,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="NIL-XV-xUw"/>
                     <connections>
+                        <outlet property="googleButton" destination="tEA-Dw-ILm" id="WZf-85-mJr"/>
                         <segue destination="VpJ-rZ-Muq" kind="show" identifier="RegisterToHome" id="fK8-pI-PeB"/>
                     </connections>
                 </viewController>
@@ -221,7 +222,7 @@
         <!--Home-->
         <scene sceneID="eHC-IE-mXp">
             <objects>
-                <tableViewController id="UIt-Qo-RFF" customClass="HomeViewController" customModule="Quizzler" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Home" id="UIt-Qo-RFF" customClass="HomeViewController" customModule="Quizzler" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="B45-YI-88h">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -292,7 +293,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="fK8-pI-PeB"/>
+        <segue reference="698-mD-hKJ"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bookmark.fill" catalog="system" width="112" height="128"/>

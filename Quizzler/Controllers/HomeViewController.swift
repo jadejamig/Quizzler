@@ -29,6 +29,10 @@ class HomeViewController: UITableViewController {
         super.viewWillAppear(true)
         self.navigationController?.isNavigationBarHidden = true
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        self.navigationController?.isNavigationBarHidden = false
+    }
     
     // MARK: - Table view data source
     
@@ -53,9 +57,15 @@ class HomeViewController: UITableViewController {
         do {
             
             try Auth.auth().signOut()
+            
+            let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let welcomeVC : UIViewController = mainStoryboardIpad.instantiateViewController(withIdentifier: "Welcome")
+            welcomeVC.navigationController?.tabBarController?.tabBar.isHidden = false
+            navigationController?.viewControllers[0] = welcomeVC
             if let vc = navigationController?.viewControllers[0]{
-                navigationController?.popToViewController(vc, animated: true)
+               navigationController?.popToViewController(vc, animated: true)
             }
+
                 print("logout successfuly")
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
