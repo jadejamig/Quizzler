@@ -120,6 +120,7 @@ extension AppDelegate: GIDSignInDelegate {
                         }
                         print("This email is already associated with another account")
                         print("igned in from \(signIn.presentingViewController.restorationIdentifier ?? "no resto ID")")
+//                        signIn.presentingViewController.button
                     }
                 }
             }

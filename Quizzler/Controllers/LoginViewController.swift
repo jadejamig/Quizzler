@@ -19,8 +19,11 @@ class LoginViewController: UIViewController {
         GIDSignIn.sharedInstance()?.presentingViewController = self
         
     }
-
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.isNavigationBarHidden = false
+    }
     @IBAction func loginButtonPressed(_ sender: UIButton) {
 //        GIDSignIn.sharedInstance().signIn()
 //        performSegue(withIdentifier: "LoginToHome", sender: self)

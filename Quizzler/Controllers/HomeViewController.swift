@@ -29,10 +29,7 @@ class HomeViewController: UITableViewController {
         super.viewWillAppear(true)
         self.navigationController?.isNavigationBarHidden = true
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-//        self.navigationController?.isNavigationBarHidden = false
-    }
+
     
     // MARK: - Table view data source
     

@@ -13,7 +13,6 @@ import GoogleSignIn
 class RegisterViewController: UIViewController {
     
     
-    @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var googleButton: UIButton!
     var handle: AuthStateDidChangeListenerHandle?
     
@@ -25,6 +24,7 @@ class RegisterViewController: UIViewController {
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             if user == nil {
                 print("No user Logged in")
+                self.googleButton.isEnabled = true
             } else {
 //                self.performSegue(withIdentifier: "RegisterToHome", sender: self)
 //                self.checkIfNewUser()
