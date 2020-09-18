@@ -10,6 +10,7 @@
 		7A15FF378226C106F5E46BAC /* Pods_Quizzler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 236742F0C54987F95F6AD4D3 /* Pods_Quizzler.framework */; };
 		D29BE9BE2511C32A00EC037B /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29BE9BC2511C32A00EC037B /* QuestionTableViewCell.swift */; };
 		D29BE9BF2511C32A00EC037B /* QuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D29BE9BD2511C32A00EC037B /* QuestionTableViewCell.xib */; };
+		D2A32133251553E600590FCC /* CreateQuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A32132251553E600590FCC /* CreateQuizModel.swift */; };
 		D2BE752B25132AD6001BBEAA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2BE752A25132AD6001BBEAA /* GoogleService-Info.plist */; };
 		D2BE752D25133412001BBEAA /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BE752C25133412001BBEAA /* RegisterViewController.swift */; };
 		D2C186DF2510C2E700BC68AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C186DE2510C2E700BC68AE /* AppDelegate.swift */; };
@@ -34,6 +35,7 @@
 		9539B282099537E9E3CAE33B /* Pods-Quizzler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quizzler.release.xcconfig"; path = "Target Support Files/Pods-Quizzler/Pods-Quizzler.release.xcconfig"; sourceTree = "<group>"; };
 		D29BE9BC2511C32A00EC037B /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
 		D29BE9BD2511C32A00EC037B /* QuestionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionTableViewCell.xib; sourceTree = "<group>"; };
+		D2A32132251553E600590FCC /* CreateQuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizModel.swift; sourceTree = "<group>"; };
 		D2BE752A25132AD6001BBEAA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D2BE752C25133412001BBEAA /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		D2C186DB2510C2E700BC68AE /* Quizzler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quizzler.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				D2C186FB2510C68900BC68AE /* QuizModel.swift */,
+				D2A32132251553E600590FCC /* CreateQuizModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				D29BE9BE2511C32A00EC037B /* QuestionTableViewCell.swift in Sources */,
 				D2C186E12510C2E700BC68AE /* SceneDelegate.swift in Sources */,
 				D2C187022510EDC700BC68AE /* CreateViewController.swift in Sources */,
+				D2A32133251553E600590FCC /* CreateQuizModel.swift in Sources */,
 				D2C186F82510C42600BC68AE /* QuizCellTableViewCell.swift in Sources */,
 				D2C186FF2510E1D400BC68AE /* CreateTableViewCell.swift in Sources */,
 				D2C186F32510C39C00BC68AE /* HomeViewController.swift in Sources */,

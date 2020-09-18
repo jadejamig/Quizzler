@@ -174,7 +174,7 @@
         <!--CREATE QUIZ-->
         <scene sceneID="MYr-mF-ZaI">
             <objects>
-                <tableViewController hidesBottomBarWhenPushed="YES" id="bOi-X2-mRv" customClass="CreateViewController" customModule="Quizzler" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController restorationIdentifier="Create" storyboardIdentifier="Create" hidesBottomBarWhenPushed="YES" id="bOi-X2-mRv" customClass="CreateViewController" customModule="Quizzler" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Map-WQ-bjJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -250,7 +250,7 @@
         <!--Create-->
         <scene sceneID="Z2T-ce-gLw">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xHx-GO-BlY" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="NavCreate" storyboardIdentifier="NavCreate" automaticallyAdjustsScrollViewInsets="NO" id="xHx-GO-BlY" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Create" image="plus.app.fill" catalog="system" id="Rni-rp-mBn"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="C5T-gl-OSt">

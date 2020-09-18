@@ -50,11 +50,8 @@ class HomeViewController: UITableViewController {
     }
     
     @IBAction func buttonPressed(_ sender: UIButton) {
-        
         do {
-            
             try Auth.auth().signOut()
-            
             let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let welcomeVC : UIViewController = mainStoryboardIpad.instantiateViewController(withIdentifier: "Welcome")
             welcomeVC.navigationController?.tabBarController?.tabBar.isHidden = false

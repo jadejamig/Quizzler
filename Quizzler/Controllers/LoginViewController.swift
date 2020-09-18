@@ -34,7 +34,6 @@ class LoginViewController: UIViewController {
             super.viewWillAppear(true)
             self.navigationController?.isNavigationBarHidden = false
             googleButton.isEnabled = true
-    //        navigationController?.navigationItem.backBarButtonItem?.isEnabled = true
         }
     
     override func viewWillDisappear(_ animated: Bool) {

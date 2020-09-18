@@ -16,7 +16,8 @@ import FirebaseAuth
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate{
     
-    
+    let newUserTryLogin = "Could not find the account you are trying to sign in."
+    let oldUserTryRegister = "This email is already associated with another account."
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -81,17 +82,14 @@ extension AppDelegate: GIDSignInDelegate {
                     let loginVC = signIn.presentingViewController as! LoginViewController
                     loginVC.googleButton.isEnabled = true
                 }
-                
             }
             return
         }
         
         // Get credential object using Google ID token and Google access token
         guard let authentication = user.authentication else { return }
-        
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                        accessToken: authentication.accessToken)
-        
         // Authenticate with Firebase using the credential object
         Auth.auth().signIn(with: credential) { (authResult, error) in
             if let error = error {
@@ -102,92 +100,74 @@ extension AppDelegate: GIDSignInDelegate {
                     
                     //IF ENTERED GOOGLE ACCOUNT IS NEW
                     if newuser{
-                        
-                        print("IS new user")
-                        
-                        if signIn.presentingViewController.restorationIdentifier == "Register"{
-                            
-                            let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                            let tabBarVC : UITabBarController = mainStoryboardIpad.instantiateViewController(withIdentifier: "TabController") as! UITabBarController
-                            tabBarVC.navigationController?.tabBarController?.tabBar.isHidden = false
-                            //                          tabBarVC.navigationController?.isNavigationBarHidden = false
-                            //                          tabBarVC.navigationController?.navigationBar.barTintColor = UIColor(named: "deepPurple")
-                            signIn.presentingViewController.navigationController?.viewControllers[0] = tabBarVC
-                            if let vc = signIn.presentingViewController.navigationController?.viewControllers[0]{
-                                signIn.presentingViewController.navigationController?.popToViewController(vc, animated: true)
-                            }
-                            print("Registered from register vc")
-                            
-                        } else if signIn.presentingViewController.restorationIdentifier == "Login"{
-                            
-                            signIn.presentingViewController.navigationController?.isNavigationBarHidden = false
-                            self.userAlreadyExist(presentingVC: signIn.presentingViewController,
-                                                  title: "Could not find the account you are trying to sign in.")
-                            let user = Auth.auth().currentUser
-
-                            user?.delete { error in
-                              if let error = error {
-                                print("error deleting user")
-                              } else {
-                                print("succesfully deleted user")
-                              }
-                            }
-                            do {
-                                try Auth.auth().signOut()
-                                print("logout successfuly")
-                            } catch let signOutError as NSError {
-                                print ("Error signing out: %@", signOutError)
-                            }
-                            print("This email is already associated with another account")
-                            print("igned in from \(signIn.presentingViewController.restorationIdentifier ?? "no resto ID")")
-                            
-                        }
-                        
-                    } else {
-                        
-                        // IF THE ENTERED GOOGLE ACCOUNT ALREADY EXIST
+                        print("Is new user")
                         
                         if signIn.presentingViewController.restorationIdentifier == "Register"{
-                            
-                            signIn.presentingViewController.navigationController?.isNavigationBarHidden = false
-                            
-                            //make a UIAlert with function userAlreadyExist
-                            self.userAlreadyExist(presentingVC: signIn.presentingViewController,
-                                                  title: "This email is already associated with another account.")
-                            do {
-                                try Auth.auth().signOut()
-                                print("logout successfuly")
-                            } catch let signOutError as NSError {
-                                print ("Error signing out: %@", signOutError)
-                            }
-                            print("This email is already associated with another account")
-                            print("igned in from \(signIn.presentingViewController.restorationIdentifier ?? "no resto ID")")
+                            self.proceedToTabController(from: signIn.presentingViewController)
+                            print("Signed in from register vc")
                             
                         } else if signIn.presentingViewController.restorationIdentifier == "Login"{
-                            
-                            let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                            let tabBarVC : UITabBarController = mainStoryboardIpad.instantiateViewController(withIdentifier: "TabController") as! UITabBarController
-                            tabBarVC.navigationController?.tabBarController?.tabBar.isHidden = false
-                            signIn.presentingViewController.navigationController?.viewControllers[0] = tabBarVC
-                            if let vc = signIn.presentingViewController.navigationController?.viewControllers[0]{
-                                signIn.presentingViewController.navigationController?.popToViewController(vc, animated: true)
-                            }
-                            
+                            signIn.presentingViewController.navigationController?.isNavigationBarHidden = false
+                            self.makeUIAlert(presentingVC: signIn.presentingViewController, title: self.newUserTryLogin)
+                            self.deleteCurrentUser()
+                            self.signOutUser()
                         }
                         
+                    } else { //IF ENTERED GOOGLE ACCOUNT IS  NOT NEW
+                        
+                        if signIn.presentingViewController.restorationIdentifier == "Register"{
+                            signIn.presentingViewController.navigationController?.isNavigationBarHidden = false
+                            self.makeUIAlert(presentingVC: signIn.presentingViewController, title: self.oldUserTryRegister)
+                            self.signOutUser()
+                            
+                        } else if signIn.presentingViewController.restorationIdentifier == "Login"{
+                            self.proceedToTabController(from: signIn.presentingViewController)
+                            print("Signed in from login vc")
+                        }
                     }
                 }
             }
         }
     }
     
-    func userAlreadyExist (presentingVC: UIViewController, title: String) {
+    func makeUIAlert (presentingVC: UIViewController, title: String) {
         let alert = UIAlertController(title: title,
                                       message: "",
                                       preferredStyle: .alert)
         let action = UIAlertAction(title: "dismiss", style: .cancel, handler: nil)
         alert.addAction(action)
         presentingVC.present(alert, animated: true, completion: nil)
+    }
+    
+    private func deleteCurrentUser(){
+        let user = Auth.auth().currentUser
+        user?.delete { error in
+          if let error = error {
+            print("error deleting user \(error)")
+          } else {
+            print("succesfully deleted user")
+          }
+        }
+    }
+    
+    private func proceedToTabController(from presentingVC: UIViewController!){
+        
+        let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let tabBarVC : UITabBarController = mainStoryboardIpad.instantiateViewController(withIdentifier: "TabController") as! UITabBarController
+        tabBarVC.navigationController?.tabBarController?.tabBar.isHidden = false
+        presentingVC.navigationController?.viewControllers[0] = tabBarVC
+        if let vc = presentingVC.navigationController?.viewControllers[0]{
+            presentingVC.navigationController?.popToViewController(vc, animated: true)
+        }
+    }
+    
+    private func signOutUser(){
+        do {
+            try Auth.auth().signOut()
+            print("logout successfuly")
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
     }
 }
 
