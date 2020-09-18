@@ -98,6 +98,8 @@ extension AppDelegate: GIDSignInDelegate {
                             let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                             let tabBarVC : UITabBarController = mainStoryboardIpad.instantiateViewController(withIdentifier: "TabController") as! UITabBarController
                             tabBarVC.navigationController?.tabBarController?.tabBar.isHidden = false
+//                          tabBarVC.navigationController?.isNavigationBarHidden = false
+//                          tabBarVC.navigationController?.navigationBar.barTintColor = UIColor(named: "deepPurple")
                             signIn.presentingViewController.navigationController?.viewControllers[0] = tabBarVC
                             if let vc = signIn.presentingViewController.navigationController?.viewControllers[0]{
                                 signIn.presentingViewController.navigationController?.popToViewController(vc, animated: true)
@@ -110,6 +112,12 @@ extension AppDelegate: GIDSignInDelegate {
                    
                     } else {
                         self.userAlreadyExist(presentingVC: signIn.presentingViewController)
+                        do {
+                            try Auth.auth().signOut()
+                            print("logout successfuly")
+                        } catch let signOutError as NSError {
+                            print ("Error signing out: %@", signOutError)
+                        }
                         print("This email is already associated with another account")
                         print("igned in from \(signIn.presentingViewController.restorationIdentifier ?? "no resto ID")")
                     }

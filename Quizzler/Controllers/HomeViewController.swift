@@ -31,7 +31,7 @@ class HomeViewController: UITableViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        self.navigationController?.isNavigationBarHidden = false
+//        self.navigationController?.isNavigationBarHidden = false
     }
     
     // MARK: - Table view data source
@@ -63,10 +63,9 @@ class HomeViewController: UITableViewController {
             welcomeVC.navigationController?.tabBarController?.tabBar.isHidden = false
             navigationController?.viewControllers[0] = welcomeVC
             if let vc = navigationController?.viewControllers[0]{
-               navigationController?.popToViewController(vc, animated: true)
+                navigationController?.popToViewController(vc, animated: true)
             }
-
-                print("logout successfuly")
+            print("logout successfuly")
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }

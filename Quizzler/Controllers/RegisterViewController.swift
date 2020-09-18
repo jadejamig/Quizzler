@@ -13,11 +13,12 @@ import GoogleSignIn
 class RegisterViewController: UIViewController {
     
     
+    @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var googleButton: UIButton!
     var handle: AuthStateDidChangeListenerHandle?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
         GIDSignIn.sharedInstance()?.presentingViewController = self
         
@@ -43,22 +44,14 @@ class RegisterViewController: UIViewController {
         if  handle != nil {
             Auth.auth().removeStateDidChangeListener(handle!)
         }
-        do {
-            
-            try Auth.auth().signOut()
-                print("logout successfuly")
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
     }
+    
     @IBAction func googleSignInMethod(_ sender: UIButton) {
         GIDSignIn.sharedInstance().signIn() 
         googleButton.isEnabled = false
-        
-        
     }
-    
-//    private func checkIfNewUser(){
+
+    //    private func checkIfNewUser(){
 //        guard let authentication = GIDSignIn.sharedInstance()?.currentUser.authentication else { return }
 //        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
 //                                                       accessToken: authentication.accessToken)

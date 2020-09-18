@@ -50,6 +50,10 @@ class CreateViewController: UITableViewController{
         super.viewDidLayoutSubviews()
         view.bringSubviewToFront(btn)
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.isNavigationBarHidden = false
+    }
 
     // MARK: - Table view data source
 
