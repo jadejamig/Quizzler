@@ -8,7 +8,7 @@
 
 import UIKit
 import IQKeyboardManagerSwift
-import FirebaseCore
+import Firebase
 import GoogleSignIn
 import FirebaseAuth
 
@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         
         FirebaseApp.configure()
+        let db = Firestore.firestore()
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         

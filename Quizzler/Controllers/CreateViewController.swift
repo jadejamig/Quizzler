@@ -12,10 +12,17 @@ import GoogleSignIn
 
 class CreateViewController: UITableViewController{
     
-
+ 
+    var vSpinner : UIView?
+    let db = Firestore.firestore()
     let btn = UIButton(type: .custom)
-//    var questionCount: Int = 4
-    let defaultValue = [0:CreateQuizModel(q: "", c: ["","","",""]), 1: CreateQuizModel(q: "", c: [""])]
+    
+    var quizKeys: [Int] = []
+    var quizQuestions: [String] = []
+    var quizChoicesDict: [String: [String]] = [:]
+    
+    //    let defaultValue = [0:CreateQuizModel(q: "", c: ["","","",""]), 1: CreateQuizModel(q: "", c: [""])]
+    
     let popUpMessage = "Your draft won't be saved. Do you want to proceed anyway?"
     var quizDictionary: [Int: CreateQuizModel] = [0:CreateQuizModel(q: "", c: ["","","",""]), 1: CreateQuizModel(q: "", c: ["","","",""])]
     override func viewDidLoad() {
@@ -48,7 +55,7 @@ class CreateViewController: UITableViewController{
         
         tableView.contentInset =  UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
-
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -89,7 +96,7 @@ class CreateViewController: UITableViewController{
             
             cell.titleField.delegate = self
             cell.descriptionField.delegate = self
-        
+            
             cell.titleField.text = quizDictionary[cell.tag]?.c[0]
             cell.descriptionField.text = quizDictionary[cell.tag]?.c[1]
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
@@ -158,6 +165,49 @@ class CreateViewController: UITableViewController{
     }
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
 
+        self.navigationController?.isNavigationBarHidden = true
+        self.btn.isHidden = true
+        self.showSpinner(onView: self.view)
+        var newChoices: [String]
+        
+        for (key, value) in quizDictionary{
+            quizKeys.append(key)
+            
+            newChoices = self.changeBlankToNone(array: (value as CreateQuizModel).c)
+            if (value as CreateQuizModel).q == ""{
+                quizChoicesDict["titleCell"] = newChoices
+                quizQuestions.append("titleCell")
+            }else{
+                quizQuestions.append((value as CreateQuizModel).q)
+                quizChoicesDict[(value as CreateQuizModel).q] = newChoices
+            }
+            
+        }
+        print(quizChoicesDict)
+        
+        if let userEmail = Auth.auth().currentUser?.email,
+           let quizTitle = quizDictionary[0]?.c[0],
+           let quizDescription = quizDictionary[0]?.c[1]{
+            
+            db.collection("Quizzes").addDocument(data: ["Author": userEmail,
+                                                        "quizTitle": quizTitle,
+                                                        "quizDescription": quizDescription,
+                                                        "quizKeys": quizKeys,
+                                                        "quizQuestions": quizQuestions,
+                                                        "quizChoicesDict": quizChoicesDict]) { (error) in
+                                                            if let e = error{
+                                                                print("There was an erorr saving the data to the Firestore \(e)")
+                                                            } else {
+                                                                self.goToHomeVC()
+                                                                print("Successfully saved data")
+                                                            }
+                                                            self.removeSpinner()
+                                                            self.btn.isHidden = false
+                                                            self.navigationController?.isNavigationBarHidden = false
+                
+            }
+        }
+        
     }
     
     
@@ -166,12 +216,7 @@ class CreateViewController: UITableViewController{
         let action = UIAlertAction(title: "Cancel", style: .default) { (action) in
         }
         let action2 = UIAlertAction(title: "Discard Quiz", style: .default) { (action2) in
-            
-            let indexPath = IndexPath(row: 0, section: 0)
-            self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-            self.clearRows()
-            self.navigationController?.tabBarController?.selectedIndex = 0
-            self.navigationController?.tabBarController?.tabBar.isHidden = false
+            self.goToHomeVC()
         }
         
         alert.addAction(action)
@@ -182,7 +227,25 @@ class CreateViewController: UITableViewController{
     private func clearRows(){
         self.quizDictionary = [0:CreateQuizModel(q: "", c: ["","","",""]), 1: CreateQuizModel(q: "", c: ["","","",""])]
         self.tableView.reloadData()
-
+    }
+    
+    private func goToHomeVC(){
+        let indexPath = IndexPath(row: 0, section: 0)
+        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        self.clearRows()
+        self.navigationController?.tabBarController?.selectedIndex = 0
+        self.navigationController?.tabBarController?.tabBar.isHidden = false
+    }
+    
+    private func changeBlankToNone(array: [String]) -> [String]{
+        
+        var newArray = array
+        for i in 0..<newArray.count{
+            if newArray[i] == ""{
+                newArray[i] = "N/A"
+            }
+        }
+        return newArray
     }
     
 }
@@ -195,7 +258,35 @@ extension CreateViewController: UITextViewDelegate{
 
 extension CreateViewController: UITextFieldDelegate{
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
         quizDictionary[textField.superview!.tag]?.c[textField.tag] = (textField.text ?? "")
+    }
+}
+
+extension CreateViewController {
+
+    func showSpinner(onView : UIView) {
+        
+        
+        
+        let spinnerView = UIView.init(frame: self.view.superview!.superview!.bounds)
+        spinnerView.backgroundColor = UIColor.init(red: 0.8, green: 0.8, blue: 0.8, alpha: 0.1)
+        let ai = UIActivityIndicatorView.init(style: .large)
+        ai.center = spinnerView.center
+        ai.startAnimating()
+        
+        
+        DispatchQueue.main.async {
+            spinnerView.addSubview(ai)
+            onView.addSubview(spinnerView)
+        }
+        
+        vSpinner = spinnerView
+    }
+    
+    func removeSpinner() {
+        DispatchQueue.main.async {
+            self.vSpinner?.removeFromSuperview()
+            self.vSpinner = nil
+        }
     }
 }
