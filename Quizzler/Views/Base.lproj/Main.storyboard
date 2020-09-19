@@ -143,8 +143,8 @@
                                 <rect key="frame" x="157" y="398" width="100" height="100"/>
                                 <color key="backgroundColor" name="deepPurple"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="B7T-r5-Rbk"/>
-                                    <constraint firstAttribute="height" constant="100" id="px4-HC-IgR"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="B7T-r5-Rbk"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="px4-HC-IgR"/>
                                 </constraints>
                                 <state key="normal" title="GOOGLE">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -277,7 +277,7 @@
         <!--Navigation Controller-->
         <scene sceneID="G9X-NL-zlH">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wMk-g9-fQi" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="WelcomeNav" automaticallyAdjustsScrollViewInsets="NO" id="wMk-g9-fQi" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WRM-1e-ha0">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

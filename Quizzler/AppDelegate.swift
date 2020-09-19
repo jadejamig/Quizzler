@@ -31,14 +31,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         GIDSignIn.sharedInstance().delegate = self
         
         //        GIDSignIn.sharedInstance()?.restorePreviousSignIn()
-        
         return true
     }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        
-        // Perform any operations when the user disconnects from app here.
-        // ...
         print("user disconnected")
     }
     
