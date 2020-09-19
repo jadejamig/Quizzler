@@ -111,10 +111,10 @@
             </objects>
             <point key="canvasLocation" x="-1306" y="-233"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--My Tab Bar Controller-->
         <scene sceneID="uov-3f-YgG">
             <objects>
-                <tabBarController storyboardIdentifier="TabController" id="VpJ-rZ-Muq" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabController" modalTransitionStyle="flipHorizontal" id="VpJ-rZ-Muq" customClass="MyTabBarController" customModule="Quizzler" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="VNF-A0-4oz"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3ZO-IW-cut">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -223,7 +223,7 @@
         <!--Home-->
         <scene sceneID="eHC-IE-mXp">
             <objects>
-                <tableViewController storyboardIdentifier="Home" id="UIt-Qo-RFF" customClass="HomeViewController" customModule="Quizzler" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Home" modalTransitionStyle="flipHorizontal" id="UIt-Qo-RFF" customClass="HomeViewController" customModule="Quizzler" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="B45-YI-88h">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
