@@ -21,8 +21,6 @@ class CreateViewController: UITableViewController{
     var quizQuestions: [String] = []
     var quizChoicesDict: [String: [String]] = [:]
     
-    //    let defaultValue = [0:CreateQuizModel(q: "", c: ["","","",""]), 1: CreateQuizModel(q: "", c: [""])]
-    
     let popUpMessage = "Your draft won't be saved. Do you want to proceed anyway?"
     var quizDictionary: [Int: CreateQuizModel] = [0:CreateQuizModel(q: "", c: ["","","",""]), 1: CreateQuizModel(q: "", c: ["","","",""])]
     override func viewDidLoad() {
@@ -146,6 +144,8 @@ class CreateViewController: UITableViewController{
         print("cell clicked")
     }
     
+    //MARK: - IB Actions Methods
+    
     @objc func buttonClicked(sender: UIButton){
         
         print("button Clicked")
@@ -164,72 +164,105 @@ class CreateViewController: UITableViewController{
         print(quizDictionary)
     }
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
-        
-        var didSaveData: Bool = false
+
         self.displayAnimatedActivityIndicatorView()
         self.displayActivityIndicatorAlert()
-        var newChoices: [String]
-        
-        for (key, value) in quizDictionary{
-            quizKeys.append(key)
-            
-            newChoices = self.changeBlankToNone(array: (value as CreateQuizModel).c)
-            if (value as CreateQuizModel).q == ""{
-                quizChoicesDict["titleCell"] = newChoices
-                quizQuestions.append("titleCell")
-            }else{
-                quizQuestions.append((value as CreateQuizModel).q)
-                quizChoicesDict[(value as CreateQuizModel).q] = newChoices
-            }
-            
-        }
+        self.breakDown()
         print(quizChoicesDict)
         
         if let userEmail = Auth.auth().currentUser?.email,
             let quizTitle = quizDictionary[0]?.c[0],
             let quizDescription = quizDictionary[0]?.c[1]{
-            
-            DispatchQueue.main.async {
-                self.db
-                    .collection("Quizzes")
-                    .addDocument(data:
-                        ["Author": userEmail,
-                         "quizTitle": quizTitle,
-                         "quizDescription": quizDescription,
-                         "quizKeys": self.quizKeys,
-                         "quizQuestions": self.quizQuestions,
-                         "quizChoicesDict": self.quizChoicesDict]) { (error) in
-                            if let e = error{
-                                print("There was an erorr saving the data to the Firestore \(e)")
-                                didSaveData = false
-                            } else {
-                                didSaveData = true
-                                print("Successfully saved data")
-                            }
-                            
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-                                self.activityIndicatorAlert?.title = "Quiz Created"
-                                self.activityIndicatorAlert?.message = "Your quiz was successfully created"
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-                                  self.dismissActivityIndicatorAlert()
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
-                                        self.hideAnimatedActivityIndicatorView()
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
-                                            self.goToHomeVC()
-                                        })
-                                        
-                                    })
-                                })
-                            })
-                }
-            }
-            
+            self.saveData(email: userEmail, title: quizTitle, description: quizDescription)
         }
         
     }
     
+    //MARK: - Saving data to firestore
     
-    func makeUIAlert() {
+    private func saveData(email: String, title: String, description: String ){
+        
+        var didSaveData: Bool = false
+        DispatchQueue.main.async {
+            self.db
+                .collection("Quizzes")
+                .addDocument(data:
+                    ["Author": email,
+                     "quizTitle": title,
+                     "quizDescription": description,
+                     "quizKeys": self.quizKeys,
+                     "quizQuestions": self.quizQuestions,
+                     "quizChoicesDict": self.quizChoicesDict]) { (error) in
+                        if let e = error{
+                            print("There was an erorr saving the data to the Firestore \(e)")
+                            didSaveData = false
+                        } else {
+                            didSaveData = true
+                            print("Successfully saved data")
+                        }
+                        self.updateActivityIndicators(didSaveData)
+            }
+        }
+    }
+    
+    //MARK: - Method for updating Activity Indicator after saving data to firestore
+    
+    private func updateActivityIndicators(_ didSaveData: Bool){
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+            if didSaveData{
+                self.activityIndicatorAlert?.title = "Quiz Created"
+                self.activityIndicatorAlert?.message = "Your quiz was successfully created"
+            } else {
+                self.activityIndicatorAlert?.title = "Something Went Wrong"
+                self.activityIndicatorAlert?.message = "Your quiz was not created"
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+                self.dismissActivityIndicatorAlert()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                    self.hideAnimatedActivityIndicatorView()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                        if didSaveData{
+                            self.goToHomeVC()
+                        }
+                    })
+                    
+                })
+            })
+        })
+        
+    }
+    //MARK: - Methods for cleaning the quizDictionary
+    
+    private func breakDown(){
+        var newChoices: [String]
+        let sortedQuizDictionary = quizDictionary.sorted { $0.key < $1.key }
+        for (key, value) in sortedQuizDictionary{
+            self.quizKeys.append(key)
+            newChoices = self.changeBlankToNone(array: (value as CreateQuizModel).c)
+            
+            if (value as CreateQuizModel).q == ""{
+                self.quizChoicesDict["cell\(key)"] = newChoices
+                self.quizQuestions.append("cell\(key)")
+            }else{
+                self.quizQuestions.append((value as CreateQuizModel).q)
+                self.quizChoicesDict[(value as CreateQuizModel).q] = newChoices
+            }
+        }
+    }
+    
+    private func changeBlankToNone(array: [String]) -> [String]{
+        var newArray = array
+        for i in 0..<newArray.count{
+            if newArray[i] == ""{
+                newArray[i] = "N/A"
+            }
+        }
+        return newArray
+    }
+    //MARK: - Methods for going back to Home VC
+    
+    private func makeUIAlert() {
         let alert = UIAlertController(title: "Delete Quiz?", message: popUpMessage, preferredStyle: .alert)
         let action = UIAlertAction(title: "Cancel", style: .default) { (action) in
         }
@@ -254,17 +287,7 @@ class CreateViewController: UITableViewController{
         self.tableView.reloadData()
     }
     
-    
-    
-    private func changeBlankToNone(array: [String]) -> [String]{
-        var newArray = array
-        for i in 0..<newArray.count{
-            if newArray[i] == ""{
-                newArray[i] = "N/A"
-            }
-        }
-        return newArray
-    }
+    //MARK: - Activity Indicator Methods
     
     func displayActivityIndicatorAlert() {
         activityIndicatorAlert = UIAlertController(title: "Creating Your Quiz",
@@ -275,26 +298,25 @@ class CreateViewController: UITableViewController{
     func dismissActivityIndicatorAlert(){
         activityIndicatorAlert?.dismissActivityIndicator()
     }
-    
-    
 }
+
+//MARK: - UITextViewDelegate Extension
 
 extension CreateViewController: UITextViewDelegate{
     func textViewDidEndEditing(_ textView: UITextView) {
-        quizDictionary[textView.tag]?.q = textView.text
+        quizDictionary[textView.tag]?.q = textView.text.trimmingCharacters(in: .whitespaces)
     }
 }
-
+//MARK: - UITextFieldDelegate Extension
 extension CreateViewController: UITextFieldDelegate{
     func textFieldDidEndEditing(_ textField: UITextField) {
-        quizDictionary[textField.superview!.tag]?.c[textField.tag] = (textField.text ?? "")
+        quizDictionary[textField.superview!.tag]?.c[textField.tag] = (textField.text?.trimmingCharacters(in: .whitespaces) ?? "")
     }
 }
 
+//MARK: - UIAlertController Extension
 extension UIAlertController {
-    
- 
     func dismissActivityIndicator() {
-        self.dismiss(animated: false)
+        self.dismiss(animated: true)
     }
 }
