@@ -12,8 +12,8 @@ import GoogleSignIn
 
 class CreateViewController: UITableViewController{
     
- 
-    var vSpinner : UIView?
+    
+    var activityIndicatorAlert: UIAlertController?
     let db = Firestore.firestore()
     let btn = UIButton(type: .custom)
     
@@ -164,10 +164,12 @@ class CreateViewController: UITableViewController{
         print(quizDictionary)
     }
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
-
-        self.navigationController?.isNavigationBarHidden = true
-        self.btn.isHidden = true
-        self.showSpinner(onView: self.view)
+        
+        var didSaveData: Bool = false
+//        self.navigationController?.isNavigationBarHidden = true
+//        self.btn.isEnabled = false
+        self.displayAnimatedActivityIndicatorView()
+        self.displayActivityIndicatorAlert()
         var newChoices: [String]
         
         for (key, value) in quizDictionary{
@@ -186,26 +188,47 @@ class CreateViewController: UITableViewController{
         print(quizChoicesDict)
         
         if let userEmail = Auth.auth().currentUser?.email,
-           let quizTitle = quizDictionary[0]?.c[0],
-           let quizDescription = quizDictionary[0]?.c[1]{
+            let quizTitle = quizDictionary[0]?.c[0],
+            let quizDescription = quizDictionary[0]?.c[1]{
             
-            db.collection("Quizzes").addDocument(data: ["Author": userEmail,
-                                                        "quizTitle": quizTitle,
-                                                        "quizDescription": quizDescription,
-                                                        "quizKeys": quizKeys,
-                                                        "quizQuestions": quizQuestions,
-                                                        "quizChoicesDict": quizChoicesDict]) { (error) in
-                                                            if let e = error{
-                                                                print("There was an erorr saving the data to the Firestore \(e)")
-                                                            } else {
-                                                                self.goToHomeVC()
-                                                                print("Successfully saved data")
-                                                            }
-                                                            self.removeSpinner()
-                                                            self.btn.isHidden = false
-                                                            self.navigationController?.isNavigationBarHidden = false
-                
+            DispatchQueue.main.async {
+                self.db
+                    .collection("Quizzes")
+                    .addDocument(data:
+                        ["Author": userEmail,
+                         "quizTitle": quizTitle,
+                         "quizDescription": quizDescription,
+                         "quizKeys": self.quizKeys,
+                         "quizQuestions": self.quizQuestions,
+                         "quizChoicesDict": self.quizChoicesDict]) { (error) in
+                            if let e = error{
+                                print("There was an erorr saving the data to the Firestore \(e)")
+                                didSaveData = false
+                            } else {
+                                didSaveData = true
+                                print("Successfully saved data")
+                            }
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+                                self.activityIndicatorAlert?.title = "Your quiz was successfully saved"
+                                self.activityIndicatorAlert?.message = ""
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+                                  self.dismissActivityIndicatorAlert()
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                                        if didSaveData{
+                                            self.clearRows()
+                                        }
+                                        self.hideAnimatedActivityIndicatorView()
+                                    })
+                                })
+                            })
+                            
+                            
+                            
+                            
+                }
             }
+            
         }
         
     }
@@ -218,15 +241,9 @@ class CreateViewController: UITableViewController{
         let action2 = UIAlertAction(title: "Discard Quiz", style: .default) { (action2) in
             self.goToHomeVC()
         }
-        
         alert.addAction(action)
         alert.addAction(action2)
         self.present(alert, animated: true, completion: nil)
-    }
-    
-    private func clearRows(){
-        self.quizDictionary = [0:CreateQuizModel(q: "", c: ["","","",""]), 1: CreateQuizModel(q: "", c: ["","","",""])]
-        self.tableView.reloadData()
     }
     
     private func goToHomeVC(){
@@ -237,8 +254,14 @@ class CreateViewController: UITableViewController{
         self.navigationController?.tabBarController?.tabBar.isHidden = false
     }
     
+    private func clearRows(){
+        self.quizDictionary = [0:CreateQuizModel(q: "", c: ["","","",""]), 1: CreateQuizModel(q: "", c: ["","","",""])]
+        self.tableView.reloadData()
+    }
+    
+    
+    
     private func changeBlankToNone(array: [String]) -> [String]{
-        
         var newArray = array
         for i in 0..<newArray.count{
             if newArray[i] == ""{
@@ -247,6 +270,17 @@ class CreateViewController: UITableViewController{
         }
         return newArray
     }
+    
+    func displayActivityIndicatorAlert() {
+        activityIndicatorAlert = UIAlertController(title: "Creating Your Quiz",
+                                                   message: "Waiting for cloud response",
+                                                   preferredStyle:  UIAlertController.Style.alert)
+        self.present(activityIndicatorAlert!, animated: true, completion: nil)
+    }
+    func dismissActivityIndicatorAlert(){
+        activityIndicatorAlert?.dismissActivityIndicator()
+    }
+    
     
 }
 
@@ -262,31 +296,10 @@ extension CreateViewController: UITextFieldDelegate{
     }
 }
 
-extension CreateViewController {
-
-    func showSpinner(onView : UIView) {
-        
-        
-        
-        let spinnerView = UIView.init(frame: self.view.superview!.superview!.bounds)
-        spinnerView.backgroundColor = UIColor.init(red: 0.8, green: 0.8, blue: 0.8, alpha: 0.1)
-        let ai = UIActivityIndicatorView.init(style: .large)
-        ai.center = spinnerView.center
-        ai.startAnimating()
-        
-        
-        DispatchQueue.main.async {
-            spinnerView.addSubview(ai)
-            onView.addSubview(spinnerView)
-        }
-        
-        vSpinner = spinnerView
-    }
+extension UIAlertController {
     
-    func removeSpinner() {
-        DispatchQueue.main.async {
-            self.vSpinner?.removeFromSuperview()
-            self.vSpinner = nil
-        }
+ 
+    func dismissActivityIndicator() {
+        self.dismiss(animated: false)
     }
 }
