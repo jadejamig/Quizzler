@@ -166,8 +166,6 @@ class CreateViewController: UITableViewController{
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
         
         var didSaveData: Bool = false
-//        self.navigationController?.isNavigationBarHidden = true
-//        self.btn.isEnabled = false
         self.displayAnimatedActivityIndicatorView()
         self.displayActivityIndicatorAlert()
         var newChoices: [String]
@@ -210,22 +208,19 @@ class CreateViewController: UITableViewController{
                             }
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-                                self.activityIndicatorAlert?.title = "Your quiz was successfully saved"
-                                self.activityIndicatorAlert?.message = ""
+                                self.activityIndicatorAlert?.title = "Quiz Created"
+                                self.activityIndicatorAlert?.message = "Your quiz was successfully created"
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
                                   self.dismissActivityIndicatorAlert()
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
-                                        if didSaveData{
-                                            self.clearRows()
-                                        }
                                         self.hideAnimatedActivityIndicatorView()
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                                            self.goToHomeVC()
+                                        })
+                                        
                                     })
                                 })
                             })
-                            
-                            
-                            
-                            
                 }
             }
             
