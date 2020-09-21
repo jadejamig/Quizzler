@@ -122,7 +122,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="UIt-Qo-RFF" kind="relationship" relationship="viewControllers" id="uTb-GF-M9A"/>
+                        <segue destination="ZzD-zQ-MWv" kind="relationship" relationship="viewControllers" id="uTb-GF-M9A"/>
                         <segue destination="xHx-GO-BlY" kind="relationship" relationship="viewControllers" id="XEJ-7z-D9h"/>
                         <segue destination="UKF-kj-MQh" kind="relationship" relationship="viewControllers" id="4Lc-Do-f0e"/>
                     </connections>
@@ -199,7 +199,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wqr-sA-I7d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="609" y="856"/>
+            <point key="canvasLocation" x="1575" y="651"/>
         </scene>
         <!--Saved-->
         <scene sceneID="bGG-9z-jdV">
@@ -218,9 +218,9 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6PI-9l-IPj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1428.985507246377" y="855.80357142857144"/>
+            <point key="canvasLocation" x="2468" y="651"/>
         </scene>
-        <!--Home-->
+        <!--Quizzes-->
         <scene sceneID="eHC-IE-mXp">
             <objects>
                 <tableViewController storyboardIdentifier="Home" modalTransitionStyle="flipHorizontal" id="UIt-Qo-RFF" customClass="HomeViewController" customModule="Quizzler" customModuleProvider="target" sceneMemberID="viewController">
@@ -241,7 +241,17 @@
                             <outlet property="delegate" destination="UIt-Qo-RFF" id="emP-8q-Nh2"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="8eh-C1-08z"/>
+                    <navigationItem key="navigationItem" title="Quizzes" id="glO-7s-eME">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="person.crop.circle.fill" catalog="system" id="eDz-eM-Z1J">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="userIconPressed:" destination="UIt-Qo-RFF" id="RdE-E5-Liz"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="magnifyingglass" catalog="system" id="PaA-Xp-4Jq">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="1i4-dP-rJh">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -250,16 +260,75 @@
                             <fragment content="Refreshing List">
                                 <attributes>
                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <font key="NSFont" metaFont="label" size="11"/>
+                                    <font key="NSFont" metaFont="controlContent" size="11"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
                         </attributedString>
                     </refreshControl>
+                    <connections>
+                        <outlet property="userIcom" destination="eDz-eM-Z1J" id="4uV-yy-vMm"/>
+                        <segue destination="hUG-BM-WcA" kind="show" identifier="HomeToQuiz" id="Qq7-JO-Dkj"/>
+                        <segue destination="5Z1-jn-f04" kind="presentation" identifier="HomeToUser" id="xX2-w2-XUf"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wBQ-3Y-UVR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1062" y="856"/>
+            <point key="canvasLocation" x="-209" y="651"/>
+        </scene>
+        <!--User View Controller-->
+        <scene sceneID="G8m-Jd-mE7">
+            <objects>
+                <tableViewController id="5Z1-jn-f04" customClass="UserViewController" customModule="Quizzler" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="AVC-wQ-Bdg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <navigationBar key="tableFooterView" contentMode="scaleToFill" id="veh-iw-qag">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <items>
+                                <navigationItem id="Am1-aM-xpJ">
+                                    <barButtonItem key="rightBarButtonItem" title="Done" id="pL7-66-QQE">
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="doneButtonPressed:" destination="5Z1-jn-f04" id="BNI-zS-LSn"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </navigationItem>
+                            </items>
+                        </navigationBar>
+                        <connections>
+                            <outlet property="dataSource" destination="5Z1-jn-f04" id="zlp-Oh-6aO"/>
+                            <outlet property="delegate" destination="5Z1-jn-f04" id="RzJ-gj-xxM"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="doneButton" destination="pL7-66-QQE" id="orN-bY-7cg"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7GX-rz-bOg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-970" y="1385"/>
+        </scene>
+        <!--Quiz View Controller-->
+        <scene sceneID="n5E-v8-mFP">
+            <objects>
+                <tableViewController restorationIdentifier="Quiz" storyboardIdentifier="Quiz" id="hUG-BM-WcA" customClass="QuizViewController" customModule="Quizzler" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="CDr-uC-kpK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="hUG-BM-WcA" id="sYe-gR-asq"/>
+                            <outlet property="delegate" destination="hUG-BM-WcA" id="6zT-yY-59K"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="aFy-9u-b90"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PWW-jo-Kn0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-210" y="1386"/>
         </scene>
         <!--Create-->
         <scene sceneID="Z2T-ce-gLw">
@@ -286,7 +355,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kfJ-Lv-cmO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-226.08695652173915" y="856.47321428571422"/>
+            <point key="canvasLocation" x="709" y="651"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="G9X-NL-zlH">
@@ -306,6 +375,31 @@
             </objects>
             <point key="canvasLocation" x="-928" y="-958"/>
         </scene>
+        <!--Home-->
+        <scene sceneID="3oH-UO-IBq">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZzD-zQ-MWv" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="8eh-C1-08z"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="M3r-eP-tmk">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" name="deepPurple"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="18"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="UIt-Qo-RFF" kind="relationship" relationship="rootViewController" id="CB5-S5-lZy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EbD-U6-sWc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1135" y="651"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="698-mD-hKJ"/>
@@ -313,6 +407,8 @@
     <resources>
         <image name="bookmark.fill" catalog="system" width="112" height="128"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="person.crop.circle.fill" catalog="system" width="128" height="121"/>
         <image name="plus.app.fill" catalog="system" width="128" height="114"/>
         <namedColor name="deepPurple">
             <color red="0.27099999785423279" green="0.27799999713897705" blue="0.46700000762939453" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

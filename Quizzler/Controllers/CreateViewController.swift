@@ -30,12 +30,9 @@ class CreateViewController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         GIDSignIn.sharedInstance()?.presentingViewController = self
         tableView.register(UINib(nibName: "CreateTableViewCell", bundle: nil), forCellReuseIdentifier: "TitleCell")
         tableView.register(UINib(nibName: "QuestionTableViewCell", bundle: nil), forCellReuseIdentifier: "QuestionCell")
-        
         tableView.separatorStyle = .none
         
         

@@ -12,18 +12,14 @@ import GoogleSignIn
 
 class HomeViewController: UITableViewController {
     
+    //    lazy var searchBar:UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 300, height: 20))
     let db = Firestore.firestore()
+    @IBOutlet weak var userIcom: UIBarButtonItem!
     var activityIndicatorAlert: UIAlertController?
     var quizArrayRef: [QuizModel] = []
     var quizArray: [QuizModel] = [] {
         didSet {
             self.tableView.reloadData()
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-//                self.dismissActivityIndicatorAlert()
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
-//                    self.hideAnimatedActivityIndicatorView()
-//                })
-//            })
         }
     }
     
@@ -33,12 +29,16 @@ class HomeViewController: UITableViewController {
         self.refreshControl?.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
         tableView.register(UINib(nibName: "QuizCellTableViewCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
         tableView.separatorStyle = .none
+        self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+//        self.searchBar.placeholder = "Search for a quiz "
+//        let rightNavBarButton = UIBarButtonItem(customView:searchBar)
+//        self.navigationItem.rightBarButtonItem = rightNavBarButton
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
 //        self.displayAnimatedActivityIndicatorView()
 //        self.displayActivityIndicatorAlert()
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.navigationController?.isNavigationBarHidden = true
         loadQuizzes()
     }
 
@@ -51,7 +51,6 @@ class HomeViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! QuizCellTableViewCell
         
         if quizArray[indexPath.row].title == "" {
@@ -70,22 +69,34 @@ class HomeViewController: UITableViewController {
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }
-    
+    //MARK: - Table View Delegate Methods
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        
+        performSegue(withIdentifier: "HomeToQuiz", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
-        print("cell clicked")
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "HomeToQuiz"{
+            let destinationVC = segue.destination as! QuizViewController
+            if let indexpath = tableView.indexPathForSelectedRow{
+                destinationVC.author = quizArray[indexpath.row].author
+                destinationVC.quizTitle = quizArray[indexpath.row].title
+            }
+        } else{
+            
+        }
+        
     }
     
+    
+    
+    //MARK: - IB Action Methods
     @objc func refresh(sender:AnyObject){
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
            self.loadQuizzes()
         })
-        
-       
     }
-    
     @IBAction func buttonPressed(_ sender: UIButton) {
         do {
             try Auth.auth().signOut()
@@ -100,12 +111,17 @@ class HomeViewController: UITableViewController {
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
-//        self.loadQuizzes()
     }
+    
+    @IBAction func userIconPressed(_ sender: UIBarButtonItem) {
+         performSegue(withIdentifier: "HomeToUser", sender: self)
+    }
+    
+    
+    //MARK: - Loading data from firestore
     
     private func loadQuizzes(){
         
-//        self.quizArray.removeAll()
         self.quizArrayRef.removeAll()
         let currentUserUID = Auth.auth().currentUser?.uid
         if let userUID = currentUserUID{
