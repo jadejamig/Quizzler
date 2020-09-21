@@ -17,15 +17,20 @@ class CreateViewController: UITableViewController{
     let db = Firestore.firestore()
     let btn = UIButton(type: .custom)
     
+    var textFieldEnd: UITextField?
+    var textViewEnd: UITextView?
+    
     var quizKeys: [Int] = []
     var quizQuestions: [String] = []
     var quizChoicesDict: [String: [String]] = [:]
     
     let popUpMessage = "Your draft won't be saved. Do you want to proceed anyway?"
     var quizDictionary: [Int: CreateQuizModel] = [0:CreateQuizModel(q: "", c: ["","","",""]), 1: CreateQuizModel(q: "", c: ["","","",""])]
+    
     override func viewDidLoad() {
-        
         super.viewDidLoad()
+        
+        
         
         GIDSignIn.sharedInstance()?.presentingViewController = self
         tableView.register(UINib(nibName: "CreateTableViewCell", bundle: nil), forCellReuseIdentifier: "TitleCell")
@@ -164,44 +169,49 @@ class CreateViewController: UITableViewController{
         print(quizDictionary)
     }
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
-
+        
+        self.textFieldEnd?.endEditing(true)
+        self.textViewEnd?.endEditing(true)
         self.displayAnimatedActivityIndicatorView()
         self.displayActivityIndicatorAlert()
         self.breakDown()
         print(quizChoicesDict)
         
         if let userEmail = Auth.auth().currentUser?.email,
+            let userUID = Auth.auth().currentUser?.uid,
             let quizTitle = quizDictionary[0]?.c[0],
             let quizDescription = quizDictionary[0]?.c[1]{
-            self.saveData(email: userEmail, title: quizTitle, description: quizDescription)
+            self.saveData(email: userEmail, title: quizTitle, description: quizDescription, uid: userUID)
         }
         
     }
     
     //MARK: - Saving data to firestore
     
-    private func saveData(email: String, title: String, description: String ){
+    private func saveData(email: String, title: String, description: String, uid: String ){
         
+        print("Description: \(description)")
         var didSaveData: Bool = false
-        DispatchQueue.main.async {
-            self.db
-                .collection("Quizzes")
-                .addDocument(data:
-                    ["Author": email,
-                     "quizTitle": title,
-                     "quizDescription": description,
-                     "quizKeys": self.quizKeys,
-                     "quizQuestions": self.quizQuestions,
-                     "quizChoicesDict": self.quizChoicesDict]) { (error) in
-                        if let e = error{
-                            print("There was an erorr saving the data to the Firestore \(e)")
-                            didSaveData = false
-                        } else {
-                            didSaveData = true
-                            print("Successfully saved data")
-                        }
-                        self.updateActivityIndicators(didSaveData)
-            }
+        self.db
+            .collection("Quizzes")
+            .addDocument(data:
+                ["author": email,
+                 "authorUID": uid,
+                 "lastUpdated": FieldValue.serverTimestamp(),
+                 "quizTitle": title,
+                 "quizDescription": description,
+                 "quizKeys": self.quizKeys,
+                 "quizQuestions": self.quizQuestions,
+                 "quizChoicesDict": self.quizChoicesDict]) { (error) in
+                    if let e = error{
+                        print("There was an erorr saving the data to the Firestore \(e)")
+                        didSaveData = false
+                    } else {
+                        didSaveData = true
+                        print("Successfully saved data")
+                    }
+                    self.updateActivityIndicators(didSaveData)
+                    
         }
     }
     
@@ -303,12 +313,21 @@ class CreateViewController: UITableViewController{
 //MARK: - UITextViewDelegate Extension
 
 extension CreateViewController: UITextViewDelegate{
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        self.textViewEnd = textView
+        self.textViewEnd?.delegate = self
+    }
     func textViewDidEndEditing(_ textView: UITextView) {
-        quizDictionary[textView.tag]?.q = textView.text.trimmingCharacters(in: .whitespaces)
+        quizDictionary[textView.tag]?.q = textView.text.trimmingCharacters(in: .whitespaces) 
     }
 }
 //MARK: - UITextFieldDelegate Extension
+
 extension CreateViewController: UITextFieldDelegate{
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.textFieldEnd = textField
+        self.textFieldEnd?.delegate = self
+    }
     func textFieldDidEndEditing(_ textField: UITextField) {
         quizDictionary[textField.superview!.tag]?.c[textField.tag] = (textField.text?.trimmingCharacters(in: .whitespaces) ?? "")
     }

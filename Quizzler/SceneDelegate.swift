@@ -7,14 +7,13 @@
 //
 
 import UIKit
-import FirebaseCore
+import Firebase
 import GoogleSignIn
 import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate, GIDSignInDelegate {
-
-    var window: UIWindow?
     
+    var window: UIWindow?
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
     }
 
@@ -31,6 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, GIDSignInDelegate {
             let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let rootNC:UINavigationController = storyboard.instantiateViewController(withIdentifier: "WelcomeNav") as! UINavigationController
             let rootVC: UITabBarController = storyboard.instantiateViewController(withIdentifier: "TabController") as! UITabBarController
+            
             rootNC.viewControllers = [rootVC]
             self.window?.rootViewController = rootNC
             self.window?.makeKeyAndVisible()
@@ -64,7 +64,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, GIDSignInDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
+    
 
 }
 
