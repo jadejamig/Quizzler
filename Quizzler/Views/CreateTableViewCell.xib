@@ -39,7 +39,7 @@
                                                     <constraint firstAttribute="height" constant="50" id="o2v-9H-AcS"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textField>
                                         </subviews>
                                         <constraints>
@@ -62,7 +62,7 @@
                                                     <constraint firstAttribute="height" constant="50" id="HzS-QA-QLI"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textField>
                                         </subviews>
                                         <constraints>

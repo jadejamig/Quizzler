@@ -65,25 +65,31 @@ class HomeViewController: UITableViewController {
         }
         
         cell.authorLabel.text = quizArray[indexPath.row].author
-        
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
+        print("cell clicked")
+    }
+    
     @IBAction func buttonPressed(_ sender: UIButton) {
-//        do {
-//            try Auth.auth().signOut()
-//            let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//            let welcomeVC : UIViewController = mainStoryboardIpad.instantiateViewController(withIdentifier: "Welcome")
-//            welcomeVC.navigationController?.tabBarController?.tabBar.isHidden = false
-//            navigationController?.viewControllers[0] = welcomeVC
-//            if let vc = navigationController?.viewControllers[0]{
-//                navigationController?.popToViewController(vc, animated: true)
-//            }
-//            print("logout successfuly")
-//        } catch let signOutError as NSError {
-//            print ("Error signing out: %@", signOutError)
-//        }
-        self.loadQuizzes()
+        do {
+            try Auth.auth().signOut()
+            let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let welcomeVC : UIViewController = mainStoryboardIpad.instantiateViewController(withIdentifier: "Welcome")
+            welcomeVC.navigationController?.tabBarController?.tabBar.isHidden = false
+            navigationController?.viewControllers[0] = welcomeVC
+            if let vc = navigationController?.viewControllers[0]{
+                navigationController?.popToViewController(vc, animated: true)
+            }
+            print("logout successfuly")
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+//        self.loadQuizzes()
     }
     
     private func loadQuizzes(){
@@ -91,8 +97,9 @@ class HomeViewController: UITableViewController {
         self.quizArray.removeAll()
         let currentUserUID = Auth.auth().currentUser?.uid
         if let userUID = currentUserUID{
-            let myQuizzesRef = db.collection("Quizzes").whereField("authorUID", isEqualTo: userUID)
-            myQuizzesRef.getDocuments { (querySnapshot, error) in
+            let myQuizzesRef = db.collection("Quizzes").order(by: "lastUpdated", descending: true)
+            let myQuizzes = myQuizzesRef.whereField("authorUID", isEqualTo: userUID)
+            myQuizzes.getDocuments { (querySnapshot, error) in
                 if let error = error {
                     print("There was an error retrieving data \(error)")
                 } else {
@@ -111,7 +118,10 @@ class HomeViewController: UITableViewController {
                 }
             }
         }
-        self.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
     }
     
     //MARK: - Activity Indicator Methods
