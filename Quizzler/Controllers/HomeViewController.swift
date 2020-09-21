@@ -14,6 +14,7 @@ class HomeViewController: UITableViewController {
     
     let db = Firestore.firestore()
     var activityIndicatorAlert: UIAlertController?
+    var quizArrayRef: [QuizModel] = []
     var quizArray: [QuizModel] = [] {
         didSet {
             self.tableView.reloadData()
@@ -29,6 +30,7 @@ class HomeViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.refreshControl?.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
         tableView.register(UINib(nibName: "QuizCellTableViewCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
         tableView.separatorStyle = .none
     }
@@ -75,6 +77,15 @@ class HomeViewController: UITableViewController {
         print("cell clicked")
     }
     
+    @objc func refresh(sender:AnyObject){
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+           self.loadQuizzes()
+        })
+        
+       
+    }
+    
     @IBAction func buttonPressed(_ sender: UIButton) {
         do {
             try Auth.auth().signOut()
@@ -94,7 +105,8 @@ class HomeViewController: UITableViewController {
     
     private func loadQuizzes(){
         
-        self.quizArray.removeAll()
+//        self.quizArray.removeAll()
+        self.quizArrayRef.removeAll()
         let currentUserUID = Auth.auth().currentUser?.uid
         if let userUID = currentUserUID{
             let myQuizzesRef = db.collection("Quizzes").order(by: "lastUpdated", descending: true)
@@ -111,15 +123,17 @@ class HomeViewController: UITableViewController {
                                    let desc = data["quizDescription"] as? String{
                                        let quiz = QuizModel(title: title, description: desc, author: author)
                                     print(quiz)
-                                    self.quizArray.append(quiz)
+                                    self.quizArrayRef.append(quiz)
                             }
                         }
+                        self.quizArray = self.quizArrayRef
                     }
                 }
             }
         }
         DispatchQueue.main.async {
             self.tableView.reloadData()
+             self.refreshControl?.endRefreshing()
         }
         
     }

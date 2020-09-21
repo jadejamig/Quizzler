@@ -27,6 +27,7 @@
 		D2C186FF2510E1D400BC68AE /* CreateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C186FD2510E1D400BC68AE /* CreateTableViewCell.swift */; };
 		D2C187002510E1D400BC68AE /* CreateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C186FE2510E1D400BC68AE /* CreateTableViewCell.xib */; };
 		D2C187022510EDC700BC68AE /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C187012510EDC700BC68AE /* CreateViewController.swift */; };
+		D2D161762518854300BAE487 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D161752518854200BAE487 /* Extensions.swift */; };
 		D2E0B69D2512DEF20051840C /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E0B69C2512DEF20051840C /* WelcomeViewController.swift */; };
 		D2E0B69F2512DF050051840C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E0B69E2512DF050051840C /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
@@ -56,6 +57,7 @@
 		D2C186FD2510E1D400BC68AE /* CreateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTableViewCell.swift; sourceTree = "<group>"; };
 		D2C186FE2510E1D400BC68AE /* CreateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateTableViewCell.xib; sourceTree = "<group>"; };
 		D2C187012510EDC700BC68AE /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
+		D2D161752518854200BAE487 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D2E0B69C2512DEF20051840C /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		D2E0B69E2512DF050051840C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,6 +121,7 @@
 				D2C186E92510C2EB00BC68AE /* LaunchScreen.storyboard */,
 				D2C186EC2510C2EB00BC68AE /* Info.plist */,
 				D2BE752A25132AD6001BBEAA /* GoogleService-Info.plist */,
+				D2D161752518854200BAE487 /* Extensions.swift */,
 			);
 			path = Quizzler;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				D2C187022510EDC700BC68AE /* CreateViewController.swift in Sources */,
 				D2A32133251553E600590FCC /* CreateQuizModel.swift in Sources */,
 				D2C186F82510C42600BC68AE /* QuizCellTableViewCell.swift in Sources */,
+				D2D161762518854300BAE487 /* Extensions.swift in Sources */,
 				D2C186FF2510E1D400BC68AE /* CreateTableViewCell.swift in Sources */,
 				D2C186F32510C39C00BC68AE /* HomeViewController.swift in Sources */,
 				D2E0B69F2512DF050051840C /* LoginViewController.swift in Sources */,
