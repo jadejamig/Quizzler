@@ -39,7 +39,11 @@ class HomeViewController: UITableViewController {
 //        self.displayAnimatedActivityIndicatorView()
 //        self.displayActivityIndicatorAlert()
         self.navigationController?.navigationController?.isNavigationBarHidden = true
+        self.tabBarController?.tabBar.isHidden = false
         loadQuizzes()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true
     }
 
     

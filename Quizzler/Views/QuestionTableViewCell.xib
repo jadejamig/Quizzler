@@ -64,7 +64,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="0lQ-Mt-n1x"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="B" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UIF-f6-hHZ">
                                                 <rect key="frame" x="0.0" y="55" width="424" height="40"/>
@@ -73,7 +73,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="lUh-Xj-f4G"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="C" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fo7-1J-JMe">
                                                 <rect key="frame" x="0.0" y="110" width="424" height="40"/>
@@ -82,7 +82,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="U6q-eo-I9h"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="D" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SiZ-U3-x78">
                                                 <rect key="frame" x="0.0" y="165" width="424" height="40"/>
@@ -91,7 +91,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="h0t-ZP-PAW"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textField>
                                         </subviews>
                                     </stackView>

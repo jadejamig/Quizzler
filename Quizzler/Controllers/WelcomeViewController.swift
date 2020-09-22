@@ -18,7 +18,7 @@ class WelcomeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        self.tabBarController?.tabBar.isHidden = true
         GIDSignIn.sharedInstance()?.presentingViewController = self
 
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
