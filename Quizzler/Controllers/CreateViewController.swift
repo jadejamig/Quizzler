@@ -52,10 +52,9 @@ class CreateViewController: UITableViewController{
             btn.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -15),
             btn.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant:0)
         ])
-        
+           
         tableView.contentInset =  UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
-        
     }
     
     override func viewDidLayoutSubviews() {

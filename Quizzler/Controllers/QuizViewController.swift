@@ -50,6 +50,7 @@ class QuizViewController: UIViewController {
         self.makeround(choice4Button)
         self.loadQuiz()
         self.progressBar.progress = 0.0
+        self.scoreLAbel.text = "Score: 0"
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -131,14 +132,18 @@ class QuizViewController: UIViewController {
         if self.correctAnwers[self.currentQuestion] == answer {
             score += 1
             self.scoreLAbel.text = "Score: \(self.score)"
-            self.currentQuizNumber += 1
         }
+        
     }
     
     @IBAction func choiceButtonPressed(_ sender: UIButton) {
         if let userAnswer = sender.titleLabel?.text {
             self.checkAnswer(userAnswer)
-            self.updateUI()
+            self.currentQuizNumber += 1
+            if self.currentQuizNumber <= self.quizCount{
+                self.updateUI()
+            }
+            
         }
     }
     
