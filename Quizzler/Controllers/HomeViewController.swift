@@ -19,7 +19,11 @@ class HomeViewController: UITableViewController {
     var quizArrayRef: [QuizModel] = []
     var quizArray: [QuizModel] = [] {
         didSet {
+//            self.dismissActivityIndicatorAlert()
+            self.hideAnimatedActivityIndicatorView()
+            self.tabBarController?.tabBar.isHidden = false
             self.tableView.reloadData()
+            
         }
     }
     
@@ -30,21 +34,20 @@ class HomeViewController: UITableViewController {
         tableView.register(UINib(nibName: "QuizCellTableViewCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
         tableView.separatorStyle = .none
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
-//        self.searchBar.placeholder = "Search for a quiz "
-//        let rightNavBarButton = UIBarButtonItem(customView:searchBar)
-//        self.navigationItem.rightBarButtonItem = rightNavBarButton
+
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-//        self.displayAnimatedActivityIndicatorView()
+        self.displayAnimatedActivityIndicatorView()
 //        self.displayActivityIndicatorAlert()
         self.navigationController?.navigationController?.isNavigationBarHidden = true
-        self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.isNavigationBarHidden = false
+        self.tabBarController?.tabBar.isHidden = true
         loadQuizzes()
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = true
-    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        self.tabBarController?.tabBar.isHidden = true
+//    }
 
     
     // MARK: - Table view data source
@@ -88,9 +91,7 @@ class HomeViewController: UITableViewController {
                 destinationVC.quizTitle = quizArray[indexpath.row].title
             }
         } else{
-            
         }
-        
     }
     
     
