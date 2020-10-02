@@ -61,6 +61,7 @@ class QuizViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.title = quizTitle
         self.scoreLAbel.text = "Score: 0"
+        self.navigationController?.navigationBar.isHidden = false
         
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -142,7 +143,6 @@ class QuizViewController: UIViewController {
             score += 1
             self.scoreLAbel.text = "Score: \(self.score)"
         }
-        
     }
     
     @IBAction func choiceButtonPressed(_ sender: UIButton) {
@@ -154,7 +154,6 @@ class QuizViewController: UIViewController {
             } else {
                 performSegue(withIdentifier: "QuizToResult", sender: self)
             }
-            
         }
     }
     

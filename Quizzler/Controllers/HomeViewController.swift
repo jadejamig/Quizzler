@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import GoogleSignIn
 
-class HomeViewController: UITableViewController {
+class HomeViewController: UITableViewController{
     
     //    lazy var searchBar:UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 300, height: 20))
     let db = Firestore.firestore()
@@ -21,8 +21,10 @@ class HomeViewController: UITableViewController {
         didSet {
 //            self.dismissActivityIndicatorAlert()
             self.hideAnimatedActivityIndicatorView()
-            self.tabBarController?.tabBar.isHidden = false
             self.tableView.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+               self.tabBarController?.tabBar.isHidden = false
+            })
             
         }
     }
@@ -34,16 +36,19 @@ class HomeViewController: UITableViewController {
         tableView.register(UINib(nibName: "QuizCellTableViewCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
         tableView.separatorStyle = .none
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
-
+        UITabBar.appearance().selectionIndicatorImage = UIImage(named: "selectedTab.png")
+//        UITabBar.appearance().barTintColor = UIColor.black
+        self.tabBarController?.tabBar.isHidden = true
+        self.displayAnimatedActivityIndicatorView()
+        loadQuizzes()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.displayAnimatedActivityIndicatorView()
+        
 //        self.displayActivityIndicatorAlert()
         self.navigationController?.navigationController?.isNavigationBarHidden = true
         self.navigationController?.isNavigationBarHidden = false
-        self.tabBarController?.tabBar.isHidden = true
-        loadQuizzes()
+        
     }
 //    override func viewWillDisappear(_ animated: Bool) {
 //        self.tabBarController?.tabBar.isHidden = true
@@ -171,6 +176,7 @@ class HomeViewController: UITableViewController {
         activityIndicatorAlert?.dismissActivityIndicator()
     }
     
+
     
 }
 

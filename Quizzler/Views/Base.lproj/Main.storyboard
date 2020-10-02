@@ -123,6 +123,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="ZzD-zQ-MWv" kind="relationship" relationship="viewControllers" id="uTb-GF-M9A"/>
+                        <segue destination="orR-O2-gm7" kind="relationship" relationship="viewControllers" id="bb9-h8-5hz"/>
                         <segue destination="xHx-GO-BlY" kind="relationship" relationship="viewControllers" id="XEJ-7z-D9h"/>
                         <segue destination="UKF-kj-MQh" kind="relationship" relationship="viewControllers" id="4Lc-Do-f0e"/>
                     </connections>
@@ -248,7 +249,7 @@
                                 <action selector="userIconPressed:" destination="UIt-Qo-RFF" id="RdE-E5-Liz"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="magnifyingglass" catalog="system" id="PaA-Xp-4Jq">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="PaA-Xp-4Jq">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                     </navigationItem>
@@ -260,7 +261,7 @@
                             <fragment content="Refreshing List">
                                 <attributes>
                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <font key="NSFont" metaFont="controlContent" size="11"/>
+                                    <font key="NSFont" metaFont="label" size="11"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
@@ -547,6 +548,51 @@
             </objects>
             <point key="canvasLocation" x="708.69565217391312" y="1384.8214285714284"/>
         </scene>
+        <!--Search-->
+        <scene sceneID="UcG-o8-0fr">
+            <objects>
+                <viewController id="orR-O2-gm7" customClass="SearchViewController" customModule="Quizzler" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="564-bs-7a7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="LUh-1r-AQh">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="4Ry-kW-eVM">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </searchBar>
+                                    <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gkV-OI-0HA">
+                                        <rect key="frame" x="0.0" y="56" width="414" height="49"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <items>
+                                            <tabBarItem title="Quizzes" id="tQj-cC-fGf"/>
+                                            <tabBarItem title="Users" id="KkM-Wh-i57"/>
+                                        </items>
+                                    </tabBar>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7hp-yD-FIl">
+                                        <rect key="frame" x="0.0" y="105" width="414" height="620"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="LUh-1r-AQh" firstAttribute="leading" secondItem="rKU-IW-yY2" secondAttribute="leading" id="0mw-CW-RwY"/>
+                            <constraint firstItem="LUh-1r-AQh" firstAttribute="top" secondItem="rKU-IW-yY2" secondAttribute="top" id="33z-sU-sgW"/>
+                            <constraint firstItem="rKU-IW-yY2" firstAttribute="bottom" secondItem="LUh-1r-AQh" secondAttribute="bottom" id="bMt-bh-xqo"/>
+                            <constraint firstItem="LUh-1r-AQh" firstAttribute="trailing" secondItem="rKU-IW-yY2" secondAttribute="trailing" id="t6m-VV-ybo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rKU-IW-yY2"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="dAD-lf-Xa4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v2Y-jL-CPu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3445" y="651"/>
+        </scene>
         <!--Create-->
         <scene sceneID="Z2T-ce-gLw">
             <objects>
@@ -627,6 +673,7 @@
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="person.crop.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.app.fill" catalog="system" width="128" height="114"/>
         <namedColor name="deepPurple">
             <color red="0.27099999785423279" green="0.27799999713897705" blue="0.46700000762939453" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

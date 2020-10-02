@@ -70,7 +70,7 @@ class CreateViewController: UITableViewController{
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+        self.tabBarController?.tabBar.isHidden = false
         if self.isMovingFromParent {
             // Your code...
         }
@@ -285,7 +285,7 @@ class CreateViewController: UITableViewController{
         self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         self.clearRows()
         self.navigationController?.tabBarController?.selectedIndex = 0
-        self.navigationController?.tabBarController?.tabBar.isHidden = false
+//        self.navigationController?.tabBarController?.tabBar.isHidden = true
     }
     
     private func clearRows(){

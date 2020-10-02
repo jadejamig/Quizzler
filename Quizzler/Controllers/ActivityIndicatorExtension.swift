@@ -69,7 +69,7 @@ extension UIView {
         //animate indicator
     
         activityIndicatorView.startAnimating()
-        activityIndicatorView.alpha = 0.1
+        activityIndicatorView.alpha = 1
     }
 
     private func removeActivityIndicatorView() {
