@@ -124,7 +124,6 @@
                     <connections>
                         <segue destination="ZzD-zQ-MWv" kind="relationship" relationship="viewControllers" id="uTb-GF-M9A"/>
                         <segue destination="orR-O2-gm7" kind="relationship" relationship="viewControllers" id="bb9-h8-5hz"/>
-                        <segue destination="xHx-GO-BlY" kind="relationship" relationship="viewControllers" id="XEJ-7z-D9h"/>
                         <segue destination="UKF-kj-MQh" kind="relationship" relationship="viewControllers" id="4Lc-Do-f0e"/>
                     </connections>
                 </tabBarController>
@@ -200,7 +199,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wqr-sA-I7d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1575" y="651"/>
+            <point key="canvasLocation" x="709" y="651"/>
         </scene>
         <!--Saved-->
         <scene sceneID="bGG-9z-jdV">
@@ -251,6 +250,9 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="PaA-Xp-4Jq">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="bOi-X2-mRv" kind="show" id="wZt-8d-zh8"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="1i4-dP-rJh">
@@ -587,38 +589,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rKU-IW-yY2"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="dAD-lf-Xa4"/>
+                    <tabBarItem key="tabBarItem" title="Search" id="dAD-lf-Xa4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v2Y-jL-CPu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3445" y="651"/>
-        </scene>
-        <!--Create-->
-        <scene sceneID="Z2T-ce-gLw">
-            <objects>
-                <navigationController restorationIdentifier="NavCreate" storyboardIdentifier="NavCreate" automaticallyAdjustsScrollViewInsets="NO" id="xHx-GO-BlY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Create" image="plus.app.fill" catalog="system" id="Rni-rp-mBn"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="C5T-gl-OSt">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" name="deepPurple"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                        <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="bOi-X2-mRv" kind="relationship" relationship="rootViewController" id="9Ev-pL-r4b"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kfJ-Lv-cmO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="709" y="651"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="G9X-NL-zlH">
@@ -671,10 +646,8 @@
         <image name="arrow.left" catalog="system" width="128" height="98"/>
         <image name="bookmark.fill" catalog="system" width="112" height="128"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
-        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="person.crop.circle.fill" catalog="system" width="128" height="121"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="plus.app.fill" catalog="system" width="128" height="114"/>
         <namedColor name="deepPurple">
             <color red="0.27099999785423279" green="0.27799999713897705" blue="0.46700000762939453" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -284,7 +284,8 @@ class CreateViewController: UITableViewController{
         let indexPath = IndexPath(row: 0, section: 0)
         self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         self.clearRows()
-        self.navigationController?.tabBarController?.selectedIndex = 0
+        self.navigationController?.popViewController(animated: true)
+//        self.navigationController?.tabBarController?.selectedIndex = 0
 //        self.navigationController?.tabBarController?.tabBar.isHidden = true
     }
     
