@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7A15FF378226C106F5E46BAC /* Pods_Quizzler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 236742F0C54987F95F6AD4D3 /* Pods_Quizzler.framework */; };
+		D26BA1A92531E24D00FA43A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D26BA1A72531E24D00FA43A0 /* Main.storyboard */; };
 		D27C3834252784D200D30F67 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27C3833252784D200D30F67 /* SearchViewController.swift */; };
 		D29BE9BE2511C32A00EC037B /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29BE9BC2511C32A00EC037B /* QuestionTableViewCell.swift */; };
 		D29BE9BF2511C32A00EC037B /* QuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D29BE9BD2511C32A00EC037B /* QuestionTableViewCell.xib */; };
@@ -18,7 +19,6 @@
 		D2BE752D25133412001BBEAA /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BE752C25133412001BBEAA /* RegisterViewController.swift */; };
 		D2C186DF2510C2E700BC68AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C186DE2510C2E700BC68AE /* AppDelegate.swift */; };
 		D2C186E12510C2E700BC68AE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C186E02510C2E700BC68AE /* SceneDelegate.swift */; };
-		D2C186E62510C2E700BC68AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2C186E42510C2E700BC68AE /* Main.storyboard */; };
 		D2C186E82510C2EB00BC68AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2C186E72510C2EB00BC68AE /* Assets.xcassets */; };
 		D2C186EB2510C2EB00BC68AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2C186E92510C2EB00BC68AE /* LaunchScreen.storyboard */; };
 		D2C186F32510C39C00BC68AE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C186F22510C39C00BC68AE /* HomeViewController.swift */; };
@@ -40,6 +40,7 @@
 		236742F0C54987F95F6AD4D3 /* Pods_Quizzler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quizzler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D806785025DB5B2C7C3BD29 /* Pods-Quizzler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quizzler.debug.xcconfig"; path = "Target Support Files/Pods-Quizzler/Pods-Quizzler.debug.xcconfig"; sourceTree = "<group>"; };
 		9539B282099537E9E3CAE33B /* Pods-Quizzler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quizzler.release.xcconfig"; path = "Target Support Files/Pods-Quizzler/Pods-Quizzler.release.xcconfig"; sourceTree = "<group>"; };
+		D26BA1A82531E24D00FA43A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D27C3833252784D200D30F67 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		D29BE9BC2511C32A00EC037B /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
 		D29BE9BD2511C32A00EC037B /* QuestionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionTableViewCell.xib; sourceTree = "<group>"; };
@@ -51,7 +52,6 @@
 		D2C186DB2510C2E700BC68AE /* Quizzler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quizzler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2C186DE2510C2E700BC68AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2C186E02510C2E700BC68AE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D2C186E52510C2E700BC68AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D2C186E72510C2EB00BC68AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D2C186EA2510C2EB00BC68AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D2C186EC2510C2EB00BC68AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -137,7 +137,7 @@
 		D2C186F42510C3F600BC68AE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D2C186E42510C2E700BC68AE /* Main.storyboard */,
+				D26BA1A72531E24D00FA43A0 /* Main.storyboard */,
 				D2C186F62510C42600BC68AE /* QuizCellTableViewCell.swift */,
 				D2C186F72510C42600BC68AE /* QuizCellTableViewCell.xib */,
 				D2C186FD2510E1D400BC68AE /* CreateTableViewCell.swift */,
@@ -236,12 +236,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D26BA1A92531E24D00FA43A0 /* Main.storyboard in Resources */,
 				D2C187002510E1D400BC68AE /* CreateTableViewCell.xib in Resources */,
 				D2C186EB2510C2EB00BC68AE /* LaunchScreen.storyboard in Resources */,
 				D2C186E82510C2EB00BC68AE /* Assets.xcassets in Resources */,
 				D29BE9BF2511C32A00EC037B /* QuestionTableViewCell.xib in Resources */,
 				D2C186F92510C42600BC68AE /* QuizCellTableViewCell.xib in Resources */,
-				D2C186E62510C2E700BC68AE /* Main.storyboard in Resources */,
 				D2BE752B25132AD6001BBEAA /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,10 +337,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D2C186E42510C2E700BC68AE /* Main.storyboard */ = {
+		D26BA1A72531E24D00FA43A0 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D2C186E52510C2E700BC68AE /* Base */,
+				D26BA1A82531E24D00FA43A0 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

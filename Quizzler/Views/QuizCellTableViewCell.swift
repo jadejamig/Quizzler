@@ -17,7 +17,7 @@ class QuizCellTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        bgView.layer.cornerRadius = bgView.frame.size.height/3
+        bgView.layer.cornerRadius = bgView.frame.size.height/4
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -173,28 +173,31 @@ class CreateViewController: UITableViewController{
         self.breakDown()
         print(quizChoicesDict)
         
-        if let userEmail = Auth.auth().currentUser?.email,
+        if let userName = Auth.auth().currentUser?.displayName,
             let userUID = Auth.auth().currentUser?.uid,
             let quizTitle = quizDictionary[0]?.c[0],
             let quizDescription = quizDictionary[0]?.c[1]{
-            self.saveData(email: userEmail, title: quizTitle, description: quizDescription, uid: userUID)
+            let quizTitleRef = quizTitle.lowercased()
+            let titleSub = quizTitleRef.components(separatedBy: " ")
+            self.saveData(name: userName, title: quizTitle, description: quizDescription, uid: userUID, titleSub: titleSub)
         }
         
     }
     
     //MARK: - Saving data to firestore
     
-    private func saveData(email: String, title: String, description: String, uid: String ){
+    private func saveData(name: String, title: String, description: String, uid: String, titleSub: [String] ){
         
         print("Description: \(description)")
         var didSaveData: Bool = false
         self.db
             .collection("Quizzes")
             .addDocument(data:
-                ["author": email,
+                ["author": name,
                  "authorUID": uid,
                  "lastUpdated": FieldValue.serverTimestamp(),
                  "quizTitle": title,
+                 "titleSubComp": titleSub,
                  "quizDescription": description,
                  "quizKeys": self.quizKeys,
                  "quizQuestions": self.quizQuestions,

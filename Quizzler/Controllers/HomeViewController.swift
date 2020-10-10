@@ -36,8 +36,6 @@ class HomeViewController: UITableViewController{
         tableView.register(UINib(nibName: "QuizCellTableViewCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
         tableView.separatorStyle = .none
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
-        UITabBar.appearance().selectionIndicatorImage = UIImage(named: "selectedTab.png")
-//        UITabBar.appearance().barTintColor = UIColor.black
         self.tabBarController?.tabBar.isHidden = true
         self.displayAnimatedActivityIndicatorView()
         loadQuizzes()
@@ -46,6 +44,7 @@ class HomeViewController: UITableViewController{
         super.viewWillAppear(true)
         
 //        self.displayActivityIndicatorAlert()
+//        self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.navigationController?.isNavigationBarHidden = true
         self.navigationController?.isNavigationBarHidden = false
         
@@ -166,12 +165,12 @@ class HomeViewController: UITableViewController{
     
     //MARK: - Activity Indicator Methods
     
-    func displayActivityIndicatorAlert() {
-        activityIndicatorAlert = UIAlertController(title: "Creating Your Quiz",
-                                                   message: "Waiting for cloud response",
-                                                   preferredStyle:  UIAlertController.Style.alert)
-        self.present(activityIndicatorAlert!, animated: true, completion: nil)
-    }
+//    func displayActivityIndicatorAlert() {
+//        activityIndicatorAlert = UIAlertController(title: "Creating Your Quiz",
+//                                                   message: "Waiting for cloud response",
+//                                                   preferredStyle:  UIAlertController.Style.alert)
+//        self.present(activityIndicatorAlert!, animated: true, completion: nil)
+//    }
     func dismissActivityIndicatorAlert(){
         activityIndicatorAlert?.dismissActivityIndicator()
     }

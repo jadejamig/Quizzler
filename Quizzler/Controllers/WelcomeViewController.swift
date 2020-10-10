@@ -15,6 +15,7 @@ class WelcomeViewController: UIViewController {
     var handle: AuthStateDidChangeListenerHandle?
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,5 +37,6 @@ class WelcomeViewController: UIViewController {
         if  handle != nil {
             Auth.auth().removeStateDidChangeListener(handle!)
         }
+        self.navigationController?.navigationBar.isHidden = false
     }
 }

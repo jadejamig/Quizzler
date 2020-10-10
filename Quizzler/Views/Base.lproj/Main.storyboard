@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ijt-HD-rw0">
-                                <rect key="frame" x="0.0" y="801" width="414" height="61"/>
+                                <rect key="frame" x="0.0" y="713" width="414" height="61"/>
                                 <color key="backgroundColor" name="deepPurple"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="61" id="tpa-Er-4YF"/>
@@ -30,7 +30,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LJ0-QW-CAb">
-                                <rect key="frame" x="0.0" y="732" width="414" height="61"/>
+                                <rect key="frame" x="0.0" y="644" width="414" height="61"/>
                                 <color key="backgroundColor" name="purple"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="61" id="hzc-X5-ErO"/>
@@ -43,7 +43,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QUIZZLER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="38X-Zz-lqm">
-                                <rect key="frame" x="82.5" y="418" width="249" height="60"/>
+                                <rect key="frame" x="82.5" y="374" width="249" height="60"/>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="50"/>
                                 <color key="textColor" name="deepPurple"/>
                                 <nil key="highlightedColor"/>
@@ -80,7 +80,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zaL-H7-O4E">
-                                <rect key="frame" x="107" y="417.5" width="200" height="61"/>
+                                <rect key="frame" x="107" y="373.5" width="200" height="61"/>
                                 <color key="backgroundColor" name="deepPurple"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="61" id="3Id-Yb-RqX"/>
@@ -140,7 +140,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tEA-Dw-ILm">
-                                <rect key="frame" x="157" y="398" width="100" height="100"/>
+                                <rect key="frame" x="157" y="354" width="100" height="100"/>
                                 <color key="backgroundColor" name="deepPurple"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="B7T-r5-Rbk"/>
@@ -263,7 +263,7 @@
                             <fragment content="Refreshing List">
                                 <attributes>
                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <font key="NSFont" metaFont="label" size="11"/>
+                                    <font key="NSFont" metaFont="message" size="11"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
@@ -559,37 +559,64 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="LUh-1r-AQh">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="4Ry-kW-eVM">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                    <searchBar contentMode="redraw" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ry-kW-eVM">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="498.5"/>
+                                        <color key="barTintColor" name="deepPurple"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
-                                    <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gkV-OI-0HA">
-                                        <rect key="frame" x="0.0" y="56" width="414" height="49"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <items>
-                                            <tabBarItem title="Quizzes" id="tQj-cC-fGf"/>
-                                            <tabBarItem title="Users" id="KkM-Wh-i57"/>
-                                        </items>
-                                    </tabBar>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="T3U-CF-Qmf">
+                                        <rect key="frame" x="0.0" y="498.5" width="414" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0i-3y-tMG">
+                                                <rect key="frame" x="0.0" y="0.0" width="207" height="40"/>
+                                                <color key="backgroundColor" name="deepPurple"/>
+                                                <state key="normal" title="Quizzes">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="fieldPressed:" destination="orR-O2-gm7" eventType="touchUpInside" id="W3i-AY-R4b"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eae-RR-4DT">
+                                                <rect key="frame" x="207" y="0.0" width="207" height="40"/>
+                                                <color key="backgroundColor" name="deepPurple"/>
+                                                <state key="normal" title="Users">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="fieldPressed:" destination="orR-O2-gm7" eventType="touchUpInside" id="yA9-Cl-813"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Kuf-E6-Twn"/>
+                                        </constraints>
+                                    </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7hp-yD-FIl">
-                                        <rect key="frame" x="0.0" y="105" width="414" height="620"/>
+                                        <rect key="frame" x="0.0" y="538.5" width="414" height="269.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </tableView>
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" name="deepPurple"/>
                         <constraints>
                             <constraint firstItem="LUh-1r-AQh" firstAttribute="leading" secondItem="rKU-IW-yY2" secondAttribute="leading" id="0mw-CW-RwY"/>
                             <constraint firstItem="LUh-1r-AQh" firstAttribute="top" secondItem="rKU-IW-yY2" secondAttribute="top" id="33z-sU-sgW"/>
-                            <constraint firstItem="rKU-IW-yY2" firstAttribute="bottom" secondItem="LUh-1r-AQh" secondAttribute="bottom" id="bMt-bh-xqo"/>
+                            <constraint firstAttribute="bottom" secondItem="LUh-1r-AQh" secondAttribute="bottom" id="bMt-bh-xqo"/>
                             <constraint firstItem="LUh-1r-AQh" firstAttribute="trailing" secondItem="rKU-IW-yY2" secondAttribute="trailing" id="t6m-VV-ybo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rKU-IW-yY2"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Search" id="dAD-lf-Xa4"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="dAD-lf-Xa4"/>
+                    <connections>
+                        <outlet property="quizButton" destination="b0i-3y-tMG" id="P0l-rr-8kJ"/>
+                        <outlet property="searchBar" destination="4Ry-kW-eVM" id="Ekf-U9-NvG"/>
+                        <outlet property="tableView" destination="7hp-yD-FIl" id="pPO-yn-Nxk"/>
+                        <outlet property="usersButton" destination="Eae-RR-4DT" id="jyD-1P-gRI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v2Y-jL-CPu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -600,9 +627,10 @@
             <objects>
                 <navigationController storyboardIdentifier="WelcomeNav" automaticallyAdjustsScrollViewInsets="NO" id="wMk-g9-fQi" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WRM-1e-ha0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="WRM-1e-ha0">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="deepPurple"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -646,6 +674,7 @@
         <image name="arrow.left" catalog="system" width="128" height="98"/>
         <image name="bookmark.fill" catalog="system" width="112" height="128"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="person.crop.circle.fill" catalog="system" width="128" height="121"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <namedColor name="deepPurple">
