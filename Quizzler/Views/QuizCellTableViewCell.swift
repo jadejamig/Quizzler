@@ -14,10 +14,12 @@ class QuizCellTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var userPhoto: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         bgView.layer.cornerRadius = bgView.frame.size.height/4
+        userPhoto.layer.cornerRadius = userPhoto.frame.size.height/2
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

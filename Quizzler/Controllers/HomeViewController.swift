@@ -14,6 +14,7 @@ class HomeViewController: UITableViewController{
     
     //    lazy var searchBar:UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 300, height: 20))
     let db = Firestore.firestore()
+    let storage = Storage.storage()
     @IBOutlet weak var userIcom: UIBarButtonItem!
     var activityIndicatorAlert: UIAlertController?
     var quizArrayRef: [QuizModel] = []
@@ -28,6 +29,7 @@ class HomeViewController: UITableViewController{
             
         }
     }
+    var userPhoto: UIImage? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +78,7 @@ class HomeViewController: UITableViewController{
             cell.descriptionLabel.text = quizArray[indexPath.row].description
         }
         
+        cell.userPhoto.image = self.userPhoto
         cell.authorLabel.text = quizArray[indexPath.row].author
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
@@ -131,9 +134,23 @@ class HomeViewController: UITableViewController{
     
     private func loadQuizzes(){
         
+        
         self.quizArrayRef.removeAll()
         let currentUserUID = Auth.auth().currentUser?.uid
         if let userUID = currentUserUID{
+            //Download user photo
+            let storageRef = storage.reference()
+            let photoRef = storageRef.child("\(userUID).jpg")
+            photoRef.getData(maxSize: 1 * 1024 * 1024) { (data, error) in
+                if let error = error {
+                  // Uh-oh, an error occurred!
+                    print("There was an error in retrieveing user photo \(error.localizedDescription)")
+                } else {
+                  // Data for "images/island.jpg" is returned
+                    self.userPhoto = UIImage(data: data!)
+                }
+            }
+            
             let myQuizzesRef = db.collection("Quizzes").order(by: "lastUpdated", descending: true)
             let myQuizzes = myQuizzesRef.whereField("authorUID", isEqualTo: userUID)
             myQuizzes.getDocuments { (querySnapshot, error) in
