@@ -16,7 +16,7 @@ import FirebaseAuth
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate{
     
-//    let db = Firestore.firestore()
+    //    let db = Firestore.firestore()
     let newUserTryLogin = "Could not find the account you are trying to sign in."
     let oldUserTryRegister = "This email is already associated with another account."
     var window: UIWindow?
@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         
         FirebaseApp.configure()
-//        let db = Firestore.firestore()
+        //        let db = Firestore.firestore()
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         
@@ -96,19 +96,22 @@ extension AppDelegate: GIDSignInDelegate {
                 
                 if let newuser = authResult?.additionalUserInfo?.isNewUser{
                     
+                    
+                    
                     //IF ENTERED GOOGLE ACCOUNT IS NEW
                     if newuser{
                         print("Is new user")
                         
                         if signIn.presentingViewController.restorationIdentifier == "Register"{
                             
-//                             create users collection in firestore
+                            //  create users collection in firestore
                             if let userProfile = authResult?.additionalUserInfo?.profile,
                                 let userUID = Auth.auth().currentUser?.uid{
                                 let userEmail = userProfile["email"] as! String
                                 let userName = userProfile["name"] as! String
-                                let userPhoto = userProfile["picture"] as! UIImage
-                                self.saveUser(name: userName, email: userEmail, photo: userPhoto, uid: userUID)
+                                let userPhoto = userProfile["picture"] as! String
+                                print("Successfully retrieved user profile")
+                                self.saveUser(name: userName, email: userEmail, photoUrl: userPhoto, uid: userUID)
                             }
                             
                             self.proceedToTabController(from: signIn.presentingViewController)
@@ -129,7 +132,17 @@ extension AppDelegate: GIDSignInDelegate {
                             self.signOutUser()
                             
                         } else if signIn.presentingViewController.restorationIdentifier == "Login"{
-                            print(authResult?.additionalUserInfo?.profile! as Any)
+                            //                            print(authResult?.additionalUserInfo?.profile! as Any)
+                            
+                            if let userProfile = authResult?.additionalUserInfo?.profile,
+                                let userUID = Auth.auth().currentUser?.uid{
+                                let userEmail = userProfile["email"] as! String
+                                let userName = userProfile["name"] as! String
+                                let userPhoto = userProfile["picture"] as! String
+                                print("Successfully retrieved user profile")
+                                self.saveUser(name: userName, email: userEmail, photoUrl: userPhoto, uid: userUID)
+                            }
+                            
                             self.proceedToTabController(from: signIn.presentingViewController)
                             print("Signed in from login vc")
                         }
@@ -139,20 +152,33 @@ extension AppDelegate: GIDSignInDelegate {
         }
     }
     
-    private func saveUser(name: String, email: String, photo: UIImage, uid: String){
+    private func saveUser(name: String, email: String, photoUrl: String, uid: String){
         
         let db = Firestore.firestore()
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        
         print("Description: \(description)")
-          db.collection("UsersInfo")
-            .addDocument(data:
-                ["userName": name,
-                 "userEmail": email,
-                 "userUID": uid]) { (error) in
-                    if let e = error{
-                        print("There was an erorr saving the data to the Firestore \(e)")
-                    } else {
-                        print("New user data saved")
-                    }
+        db.collection("UsersInfo").document(uid)
+            .setData(["userName": name,
+                      "userEmail": email,
+                      "userUID": uid]) { (error) in
+                        if let e = error{
+                            print("There was an erorr saving the data to the Firestore \(e)")
+                        } else {
+                            print("New user data saved")
+                        }
+        }
+        
+        let url = URL(string: photoUrl)
+        if let data = try? Data(contentsOf: url!){
+            // let image = UIImage(data: data)
+            let uid = Auth.auth().currentUser?.uid
+            // Create a reference to the file you want to upload
+            let photoRef = storageRef.child("\(uid!).jpg")
+            // Upload the file to the path
+            photoRef.putData(data, metadata: nil)
+            print("Photo successfully saved")
         }
     }
     
@@ -168,11 +194,11 @@ extension AppDelegate: GIDSignInDelegate {
     private func deleteCurrentUser(){
         let user = Auth.auth().currentUser
         user?.delete { error in
-          if let error = error {
-            print("error deleting user \(error)")
-          } else {
-            print("succesfully deleted user")
-          }
+            if let error = error {
+                print("error deleting user \(error)")
+            } else {
+                print("succesfully deleted user")
+            }
         }
     }
     
