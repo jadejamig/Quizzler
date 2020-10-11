@@ -16,6 +16,7 @@ import FirebaseAuth
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate{
     
+//    let db = Firestore.firestore()
     let newUserTryLogin = "Could not find the account you are trying to sign in."
     let oldUserTryRegister = "This email is already associated with another account."
     var window: UIWindow?
@@ -27,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         
         FirebaseApp.configure()
-        let db = Firestore.firestore()
+//        let db = Firestore.firestore()
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         
@@ -100,6 +101,16 @@ extension AppDelegate: GIDSignInDelegate {
                         print("Is new user")
                         
                         if signIn.presentingViewController.restorationIdentifier == "Register"{
+                            
+//                             create users collection in firestore
+                            if let userProfile = authResult?.additionalUserInfo?.profile,
+                                let userUID = Auth.auth().currentUser?.uid{
+                                let userEmail = userProfile["email"] as! String
+                                let userName = userProfile["name"] as! String
+                                let userPhoto = userProfile["picture"] as! UIImage
+                                self.saveUser(name: userName, email: userEmail, photo: userPhoto, uid: userUID)
+                            }
+                            
                             self.proceedToTabController(from: signIn.presentingViewController)
                             print("Signed in from register vc")
                             
@@ -118,12 +129,30 @@ extension AppDelegate: GIDSignInDelegate {
                             self.signOutUser()
                             
                         } else if signIn.presentingViewController.restorationIdentifier == "Login"{
+                            print(authResult?.additionalUserInfo?.profile! as Any)
                             self.proceedToTabController(from: signIn.presentingViewController)
                             print("Signed in from login vc")
                         }
                     }
                 }
             }
+        }
+    }
+    
+    private func saveUser(name: String, email: String, photo: UIImage, uid: String){
+        
+        let db = Firestore.firestore()
+        print("Description: \(description)")
+          db.collection("UsersInfo")
+            .addDocument(data:
+                ["userName": name,
+                 "userEmail": email,
+                 "userUID": uid]) { (error) in
+                    if let e = error{
+                        print("There was an erorr saving the data to the Firestore \(e)")
+                    } else {
+                        print("New user data saved")
+                    }
         }
     }
     
