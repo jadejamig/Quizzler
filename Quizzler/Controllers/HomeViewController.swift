@@ -29,7 +29,11 @@ class HomeViewController: UITableViewController{
             
         }
     }
-    var userPhoto: UIImage? = nil
+    var userPhoto: UIImage? = nil {
+        didSet{
+            self.tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,7 +83,7 @@ class HomeViewController: UITableViewController{
         }
         
         cell.userPhoto.image = self.userPhoto
-        cell.authorLabel.text = quizArray[indexPath.row].author
+        cell.authorLabel.text = quizArray[indexPath.row].author.capitalized
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }

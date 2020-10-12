@@ -16,37 +16,49 @@ class SearchViewController: UIViewController{
     @IBOutlet weak var quizButton: UIButton!
     @IBOutlet weak var usersButton: UIButton!
     
+    let db = Firestore.firestore()
+    let storage = Storage.storage()
+    
     var quizzesFieldSelected: Bool = true {
         didSet{
-            self.tableView.reloadData()
+            self.reloadTableData()
         }
     }
     var userFieldSelected: Bool = false {
         didSet{
-            self.tableView.reloadData()
+           self.reloadTableData()
+            print("usser a rray count is: \(self.userArray.count)")
         }
     }
 
-    let db = Firestore.firestore()
-    let storage = Storage.storage()
-    var userPhoto: UIImage? = nil {
+    var quizzesUserPhoto: [UIImage?] = [] {
         didSet{
-            self.tableView.reloadData()
+            self.reloadTableData()
         }
     }
+    var usersPhotoArray: [UIImage?] = [] {
+        didSet{
+            self.reloadTableData()
+        }
+    }
+    
     var quizArrayRef: [QuizModel] = []
     var quizArray: [QuizModel] = [] {
         didSet {
             print("Search Complete")
             print(quizArray)
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+           self.reloadTableData()
+        }
+    }
+    
+    var userArrayRef: [UserModel] = []
+    var userArray: [UserModel] = [] {
+        didSet{
+            self.reloadTableData()
         }
     }
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         //        tableView.separatorStyle = .none
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
@@ -57,6 +69,7 @@ class SearchViewController: UIViewController{
         self.tableView.dataSource = self
         self.searchBar.delegate = self
         self.tableView.register(UINib(nibName: "QuizCellTableViewCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
+        self.tableView.register(UINib(nibName: "UserTableViewCell", bundle: nil), forCellReuseIdentifier: "UserReusableCell")
         
         
     }
@@ -78,16 +91,11 @@ class SearchViewController: UIViewController{
             self.userFieldSelected = true
         }
     }
-    
-    //    override func viewWillDisappear(_ animated: Bool) {
-    //        super.viewWillDisappear(true)
-    //
-    //        self.tabBarController?.tabBar.isHidden = true
-    //    }
-    
+
+    //MARK: - Query Firebase Methods
     private func searchQuizSubComp(searchKey: String){
-        
         self.quizArrayRef.removeAll()
+        self.quizzesUserPhoto.removeAll()
         if (Auth.auth().currentUser?.uid) != nil{
             
             let myQuizzesRef = db.collection("Quizzes").order(by: "lastUpdated", descending: true)
@@ -103,7 +111,7 @@ class SearchViewController: UIViewController{
                                 let title  = data["quizTitle"] as? String,
                                 let desc = data["quizDescription"] as? String,
                                 let uid = data["authorUID"] as? String{
-                                self.loadUserPhoto(userUID: uid)
+                                self.loadQuizUserPhoto(userUID: uid)
                                 let quiz = QuizModel(title: title, description: desc, author: author)
                                 self.quizArrayRef.append(quiz)
                             }
@@ -113,12 +121,38 @@ class SearchViewController: UIViewController{
                 }
             }
         }
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
+    }
+    private func searchUser(searchKey: String){
+        self.userArrayRef.removeAll()
+        self.usersPhotoArray.removeAll()
+        if (Auth.auth().currentUser?.uid) != nil{
+            
+            let myQuizzesRef = db.collection("UsersInfo")
+            let myQuizzes = myQuizzesRef.whereField("nameSubComp", arrayContains: searchKey)
+            myQuizzes.getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    print("There was an error retrieving data \(error)")
+                } else {
+                    if let snapshotDocuments = querySnapshot?.documents {
+                        for doc in snapshotDocuments {
+                            let data = doc.data()
+                            print("name subcomp contains search key")
+                            if let email = data["userEmail"] as? String,
+                                let name  = data["userName"] as? String,
+                                let uid = data["userUID"] as? String{
+                                self.loadUsersPhoto(userUID: uid)
+                                let user = UserModel(userEmail: email, userName: name, userUID: uid)
+                                self.userArrayRef.append(user)
+                            }
+                        }
+                        self.userArray = self.userArrayRef
+                    }
+                }
+            }
         }
     }
     
-    private func loadUserPhoto(userUID: String){
+    private func loadQuizUserPhoto(userUID: String){
         let storageRef = storage.reference()
         let photoRef = storageRef.child("\(userUID).jpg")
         photoRef.getData(maxSize: 1 * 1024 * 1024) { (data, error) in
@@ -127,17 +161,42 @@ class SearchViewController: UIViewController{
                 print("There was an error in retrieveing user photo \(error.localizedDescription)")
             } else {
                 // Data for "images/island.jpg" is returned
-                self.userPhoto = UIImage(data: data!)
+                self.quizzesUserPhoto.append(UIImage(data: data!))
             }
+        }
+    }
+    private func loadUsersPhoto(userUID: String){
+        let storageRef = storage.reference()
+        let photoRef = storageRef.child("\(userUID).jpg")
+        photoRef.getData(maxSize: 1 * 1024 * 1024) { (data, error) in
+            if let error = error {
+                // Uh-oh, an error occurred!
+                print("There was an error in retrieveing user photo \(error.localizedDescription)")
+            } else {
+                // Data for "images/island.jpg" is returned
+                self.usersPhotoArray.append(UIImage(data: data!))
+            }
+        }
+    }
+
+    private func reloadTableData(){
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
         }
     }
 }
 
+//MARK: - TAble View Data Source Methods
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return quizArray.count
+        if quizzesFieldSelected{
+            return self.quizArray.count
+        } else {
+            return self.userArray.count
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -154,24 +213,33 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             } else {
                 cell.descriptionLabel.text = quizArray[indexPath.row].description
             }
+            if self.quizzesUserPhoto.count > indexPath.row{
+                cell.userPhoto.image = self.quizzesUserPhoto[indexPath.row]
+            }
             
-            cell.userPhoto.image = self.userPhoto
-            cell.authorLabel.text = quizArray[indexPath.row].author
+            cell.authorLabel.text = quizArray[indexPath.row].author.capitalized
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
         } else {
-            return UITableViewCell.init()
+            let cell = tableView.dequeueReusableCell(withIdentifier: "UserReusableCell", for: indexPath) as! UserTableViewCell
+            cell.authorLabel.text = self.userArray[indexPath.row].userName.capitalized
+            
+            if self.usersPhotoArray.count > indexPath.row{
+                cell.authorImageView.image = self.usersPhotoArray[indexPath.row]
+            }
+            return cell
         }
     }
 }
 
+//MARK: - Search View Delegate Methods
 extension SearchViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         if let searchText = searchBar.text?.trimmingCharacters(in: .whitespaces) {
             if searchText != ""{
                 self.searchQuizSubComp(searchKey: searchText.lowercased())
-                self.tableView.reloadData()
+                self.searchUser(searchKey: searchText.lowercased())
             }
             
         }

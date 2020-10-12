@@ -11,6 +11,7 @@
 		D26BA1A92531E24D00FA43A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D26BA1A72531E24D00FA43A0 /* Main.storyboard */; };
 		D26BA1AC2533BED800FA43A0 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BA1AA2533BED800FA43A0 /* UserTableViewCell.swift */; };
 		D26BA1AD2533BED800FA43A0 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D26BA1AB2533BED800FA43A0 /* UserTableViewCell.xib */; };
+		D26BA1AF2533DF5D00FA43A0 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BA1AE2533DF5D00FA43A0 /* UserModel.swift */; };
 		D27C3834252784D200D30F67 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27C3833252784D200D30F67 /* SearchViewController.swift */; };
 		D29BE9BE2511C32A00EC037B /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29BE9BC2511C32A00EC037B /* QuestionTableViewCell.swift */; };
 		D29BE9BF2511C32A00EC037B /* QuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D29BE9BD2511C32A00EC037B /* QuestionTableViewCell.xib */; };
@@ -45,6 +46,7 @@
 		D26BA1A82531E24D00FA43A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D26BA1AA2533BED800FA43A0 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		D26BA1AB2533BED800FA43A0 /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
+		D26BA1AE2533DF5D00FA43A0 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		D27C3833252784D200D30F67 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		D29BE9BC2511C32A00EC037B /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
 		D29BE9BD2511C32A00EC037B /* QuestionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionTableViewCell.xib; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 			children = (
 				D2C186FB2510C68900BC68AE /* QuizModel.swift */,
 				D2A32132251553E600590FCC /* CreateQuizModel.swift */,
+				D26BA1AE2533DF5D00FA43A0 /* UserModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2E0B69D2512DEF20051840C /* WelcomeViewController.swift in Sources */,
+				D26BA1AF2533DF5D00FA43A0 /* UserModel.swift in Sources */,
 				D2BE752D25133412001BBEAA /* RegisterViewController.swift in Sources */,
 				D2C186DF2510C2E700BC68AE /* AppDelegate.swift in Sources */,
 				D2A321372516CA7200590FCC /* ActivityIndicatorExtension.swift in Sources */,

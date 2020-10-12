@@ -18,10 +18,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8sw-0N-i9e">
-                        <rect key="frame" x="20" y="10" width="332" height="108"/>
+                        <rect key="frame" x="15" y="10" width="342" height="108"/>
                         <subviews>
                             <stackView contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="xpx-fe-dk0">
-                                <rect key="frame" x="20" y="10" width="292" height="88"/>
+                                <rect key="frame" x="20" y="10" width="302" height="88"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="a80-Gf-aW4">
                                         <rect key="frame" x="0.0" y="0.0" width="63.5" height="54"/>
@@ -72,9 +72,9 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="8sw-0N-i9e" secondAttribute="trailing" constant="20" id="Cqc-F1-wDz"/>
+                    <constraint firstAttribute="trailing" secondItem="8sw-0N-i9e" secondAttribute="trailing" constant="15" id="Cqc-F1-wDz"/>
                     <constraint firstAttribute="bottom" secondItem="8sw-0N-i9e" secondAttribute="bottom" id="GJf-Zg-dOX"/>
-                    <constraint firstItem="8sw-0N-i9e" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="IVX-Do-zq7"/>
+                    <constraint firstItem="8sw-0N-i9e" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="IVX-Do-zq7"/>
                     <constraint firstItem="8sw-0N-i9e" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="lYE-3o-6vZ"/>
                 </constraints>
             </tableViewCellContentView>

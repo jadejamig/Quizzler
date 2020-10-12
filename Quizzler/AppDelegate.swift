@@ -157,12 +157,14 @@ extension AppDelegate: GIDSignInDelegate {
         let db = Firestore.firestore()
         let storage = Storage.storage()
         let storageRef = storage.reference()
-        
+        let nameRef = name.lowercased()
+        let nameSubComp = nameRef.components(separatedBy: " ")
         print("Description: \(description)")
         db.collection("UsersInfo").document(uid)
             .setData(["userName": name,
                       "userEmail": email,
-                      "userUID": uid]) { (error) in
+                      "userUID": uid,
+                      "nameSubComp": nameSubComp]) { (error) in
                         if let e = error{
                             print("There was an erorr saving the data to the Firestore \(e)")
                         } else {

@@ -18,7 +18,7 @@ class QuizCellTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        bgView.layer.cornerRadius = bgView.frame.size.height/4
+        bgView.layer.cornerRadius = bgView.frame.size.height/5
         userPhoto.layer.cornerRadius = userPhoto.frame.size.height/2
     }
 
