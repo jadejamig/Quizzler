@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
 
 class SearchViewController: UIViewController{
     
@@ -70,8 +71,16 @@ class SearchViewController: UIViewController{
         self.searchBar.delegate = self
         self.tableView.register(UINib(nibName: "QuizCellTableViewCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
         self.tableView.register(UINib(nibName: "UserTableViewCell", bundle: nil), forCellReuseIdentifier: "UserReusableCell")
+        self.tableView.separatorStyle = .none
         
-        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        self.navigationController?.isNavigationBarHidden = false
     }
     @IBAction func reloadPressed(_ sender: UIButton) {
         self.tableView.reloadData()
@@ -108,11 +117,12 @@ class SearchViewController: UIViewController{
                         for doc in snapshotDocuments {
                             let data = doc.data()
                             if let author = data["author"] as? String,
+                                let authorUID = data["authorUID"] as? String,
                                 let title  = data["quizTitle"] as? String,
                                 let desc = data["quizDescription"] as? String,
                                 let uid = data["authorUID"] as? String{
                                 self.loadQuizUserPhoto(userUID: uid)
-                                let quiz = QuizModel(title: title, description: desc, author: author)
+                                let quiz = QuizModel(title: title, description: desc, author: author, authorUID: authorUID)
                                 self.quizArrayRef.append(quiz)
                             }
                         }
@@ -227,7 +237,30 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             if self.usersPhotoArray.count > indexPath.row{
                 cell.authorImageView.image = self.usersPhotoArray[indexPath.row]
             }
+            cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if self.quizzesFieldSelected{
+            performSegue(withIdentifier: "SearchToQuiz", sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
+        } else {
+            
+        }
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SearchToQuiz"{
+            let destinationVC = segue.destination as! QuizViewController
+            if let indexpath = tableView.indexPathForSelectedRow{
+                destinationVC.author = quizArray[indexpath.row].authorUID
+                destinationVC.quizTitle = quizArray[indexpath.row].title
+            }
+        } else{
         }
     }
 }

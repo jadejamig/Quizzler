@@ -51,10 +51,13 @@ class HomeViewController: UITableViewController{
         
 //        self.displayActivityIndicatorAlert()
 //        self.tabBarController?.tabBar.isHidden = true
-        self.navigationController?.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.navigationController?.navigationBar.isHidden = true
         self.navigationController?.isNavigationBarHidden = false
-        
     }
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(true)
+//        self.navigationController?.navigationController?.navigationBar.isHidden = true
+//    }
 //    override func viewWillDisappear(_ animated: Bool) {
 //        self.tabBarController?.tabBar.isHidden = true
 //    }
@@ -92,13 +95,13 @@ class HomeViewController: UITableViewController{
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         performSegue(withIdentifier: "HomeToQuiz", sender: self)
-        tableView.deselectRow(at: indexPath, animated: true)
+//        tableView.deselectRow(at: indexPath, animated: true)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "HomeToQuiz"{
             let destinationVC = segue.destination as! QuizViewController
             if let indexpath = tableView.indexPathForSelectedRow{
-                destinationVC.author = quizArray[indexpath.row].author
+                destinationVC.author = quizArray[indexpath.row].authorUID
                 destinationVC.quizTitle = quizArray[indexpath.row].title
             }
         } else{
@@ -165,9 +168,10 @@ class HomeViewController: UITableViewController{
                         for doc in snapshotDocuments {
                             let data = doc.data()
                                 if let author = data["author"] as? String,
+                                   let authorUID = data["authorUID"] as? String,
                                    let title  = data["quizTitle"] as? String,
                                    let desc = data["quizDescription"] as? String{
-                                       let quiz = QuizModel(title: title, description: desc, author: author)
+                                    let quiz = QuizModel(title: title, description: desc, author: author, authorUID: authorUID)
                                     print(quiz)
                                     self.quizArrayRef.append(quiz)
                             }

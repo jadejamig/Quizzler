@@ -61,7 +61,7 @@ class QuizViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.title = quizTitle
         self.scoreLAbel.text = "Score: 0"
-        self.navigationController?.navigationBar.isHidden = false
+//        self.navigationController?.navigationBar.isHidden = false
         
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -86,7 +86,7 @@ class QuizViewController: UIViewController {
     } 
     
     private func loadQuiz(){
-        self.author = Auth.auth().currentUser?.uid
+//        self.author = Auth.auth().currentUser?.uid
         if let userUID = self.author, let title = quizTitle{
             let quizRef = db.collection("Quizzes")
                 .whereField("authorUID", isEqualTo: userUID)

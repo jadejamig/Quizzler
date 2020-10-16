@@ -123,7 +123,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="ZzD-zQ-MWv" kind="relationship" relationship="viewControllers" id="uTb-GF-M9A"/>
-                        <segue destination="orR-O2-gm7" kind="relationship" relationship="viewControllers" id="bb9-h8-5hz"/>
+                        <segue destination="8Xl-3G-SeP" kind="relationship" relationship="viewControllers" id="bb9-h8-5hz"/>
                         <segue destination="UKF-kj-MQh" kind="relationship" relationship="viewControllers" id="4Lc-Do-f0e"/>
                     </connections>
                 </tabBarController>
@@ -223,7 +223,7 @@
         <!--Quizzes-->
         <scene sceneID="eHC-IE-mXp">
             <objects>
-                <tableViewController storyboardIdentifier="Home" modalTransitionStyle="flipHorizontal" id="UIt-Qo-RFF" customClass="HomeViewController" customModule="Quizzler" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Home" extendedLayoutIncludesOpaqueBars="YES" modalTransitionStyle="flipHorizontal" id="UIt-Qo-RFF" customClass="HomeViewController" customModule="Quizzler" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="B45-YI-88h">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -263,7 +263,7 @@
                             <fragment content="Refreshing List">
                                 <attributes>
                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <font key="NSFont" metaFont="label" size="11"/>
+                                    <font key="NSFont" metaFont="message" size="11"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
@@ -550,7 +550,7 @@
             </objects>
             <point key="canvasLocation" x="708.69565217391312" y="1384.8214285714284"/>
         </scene>
-        <!--Search-->
+        <!--Search View Controller-->
         <scene sceneID="UcG-o8-0fr">
             <objects>
                 <viewController id="orR-O2-gm7" customClass="SearchViewController" customModule="Quizzler" customModuleProvider="target" sceneMemberID="viewController">
@@ -610,17 +610,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rKU-IW-yY2"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="dAD-lf-Xa4"/>
+                    <navigationItem key="navigationItem" id="CQD-7c-WkC"/>
                     <connections>
                         <outlet property="quizButton" destination="b0i-3y-tMG" id="P0l-rr-8kJ"/>
                         <outlet property="searchBar" destination="4Ry-kW-eVM" id="Ekf-U9-NvG"/>
                         <outlet property="tableView" destination="7hp-yD-FIl" id="pPO-yn-Nxk"/>
                         <outlet property="usersButton" destination="Eae-RR-4DT" id="jyD-1P-gRI"/>
+                        <segue destination="Kgf-Rw-eCn" kind="show" identifier="SearchToQuiz" id="LeW-QL-U9r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v2Y-jL-CPu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3445" y="651"/>
+            <point key="canvasLocation" x="4355.072463768116" y="650.89285714285711"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="G9X-NL-zlH">
@@ -631,6 +632,10 @@
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" name="deepPurple"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="18"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -666,8 +671,34 @@
             </objects>
             <point key="canvasLocation" x="-1135" y="651"/>
         </scene>
+        <!--Search-->
+        <scene sceneID="NBj-Me-lae">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8Xl-3G-SeP" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="dAD-lf-Xa4"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="f3U-hr-Ghw">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" name="deepPurple"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="18"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="orR-O2-gm7" kind="relationship" relationship="rootViewController" id="uWi-1F-8Tb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vWi-Oo-wXW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3444.9275362318845" y="650.89285714285711"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="LeW-QL-U9r"/>
         <segue reference="698-mD-hKJ"/>
     </inferredMetricsTieBreakers>
     <resources>

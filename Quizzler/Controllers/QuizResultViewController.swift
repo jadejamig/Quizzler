@@ -34,10 +34,10 @@ class QuizResultViewController: UIViewController {
         super.viewWillAppear(true)
         //
     }
-    //    override func viewWillDisappear(_ animated: Bool) {
-    //        super.viewWillDisappear(true)
-    //        self.navigationController?.navigationBar.isHidden = false
-    //    }
+        override func viewWillDisappear(_ animated: Bool) {
+            super.viewWillDisappear(true)
+            self.navigationController?.navigationBar.isHidden = false
+        }
     
     private func getRemark(){
         let scorePercentage = (Float(self.userScore) / Float(self.numOfItems)) * 100

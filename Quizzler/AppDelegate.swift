@@ -11,7 +11,7 @@ import IQKeyboardManagerSwift
 import Firebase
 import GoogleSignIn
 import FirebaseAuth
-
+import FirebaseStorage
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate{
