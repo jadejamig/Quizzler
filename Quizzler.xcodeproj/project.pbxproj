@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7A15FF378226C106F5E46BAC /* Pods_Quizzler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 236742F0C54987F95F6AD4D3 /* Pods_Quizzler.framework */; };
+		D25D27162539B53800F6D874 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25D27152539B53800F6D874 /* PeopleViewController.swift */; };
 		D26BA1A92531E24D00FA43A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D26BA1A72531E24D00FA43A0 /* Main.storyboard */; };
 		D26BA1AC2533BED800FA43A0 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BA1AA2533BED800FA43A0 /* UserTableViewCell.swift */; };
 		D26BA1AD2533BED800FA43A0 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D26BA1AB2533BED800FA43A0 /* UserTableViewCell.xib */; };
@@ -43,6 +44,7 @@
 		236742F0C54987F95F6AD4D3 /* Pods_Quizzler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quizzler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D806785025DB5B2C7C3BD29 /* Pods-Quizzler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quizzler.debug.xcconfig"; path = "Target Support Files/Pods-Quizzler/Pods-Quizzler.debug.xcconfig"; sourceTree = "<group>"; };
 		9539B282099537E9E3CAE33B /* Pods-Quizzler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quizzler.release.xcconfig"; path = "Target Support Files/Pods-Quizzler/Pods-Quizzler.release.xcconfig"; sourceTree = "<group>"; };
+		D25D27152539B53800F6D874 /* PeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
 		D26BA1A82531E24D00FA43A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D26BA1AA2533BED800FA43A0 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		D26BA1AB2533BED800FA43A0 /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				D2A321342515E7BD00590FCC /* MyTabBarController.swift */,
 				D2A321362516CA7200590FCC /* ActivityIndicatorExtension.swift */,
 				D27C3833252784D200D30F67 /* SearchViewController.swift */,
+				D25D27152539B53800F6D874 /* PeopleViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				D2E0B69D2512DEF20051840C /* WelcomeViewController.swift in Sources */,
 				D26BA1AF2533DF5D00FA43A0 /* UserModel.swift in Sources */,
 				D2BE752D25133412001BBEAA /* RegisterViewController.swift in Sources */,
+				D25D27162539B53800F6D874 /* PeopleViewController.swift in Sources */,
 				D2C186DF2510C2E700BC68AE /* AppDelegate.swift in Sources */,
 				D2A321372516CA7200590FCC /* ActivityIndicatorExtension.swift in Sources */,
 				D26BA1AC2533BED800FA43A0 /* UserTableViewCell.swift in Sources */,

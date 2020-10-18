@@ -617,11 +617,69 @@
                         <outlet property="tableView" destination="7hp-yD-FIl" id="pPO-yn-Nxk"/>
                         <outlet property="usersButton" destination="Eae-RR-4DT" id="jyD-1P-gRI"/>
                         <segue destination="Kgf-Rw-eCn" kind="show" identifier="SearchToQuiz" id="LeW-QL-U9r"/>
+                        <segue destination="791-oY-SSI" kind="show" identifier="SearchToUser" id="sqf-Cv-W1f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v2Y-jL-CPu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4355.072463768116" y="650.89285714285711"/>
+        </scene>
+        <!--People View Controller-->
+        <scene sceneID="6zi-zp-Irj">
+            <objects>
+                <viewController id="791-oY-SSI" customClass="PeopleViewController" customModule="Quizzler" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yUv-6b-h3r">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="nHC-Pk-ZD5">
+                                <rect key="frame" x="0.0" y="20" width="414" height="705"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y2Q-NJ-ckl">
+                                        <rect key="frame" x="157" y="0.0" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="INX-5p-3OO"/>
+                                            <constraint firstAttribute="width" constant="100" id="z9x-qX-rq5"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bf-oN-EbC">
+                                        <rect key="frame" x="178.5" y="120" width="57" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hQl-Ke-8JH">
+                                        <rect key="frame" x="0.0" y="169" width="414" height="536"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </tableView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="hQl-Ke-8JH" secondAttribute="trailing" id="4Rk-bh-XxW"/>
+                                    <constraint firstItem="hQl-Ke-8JH" firstAttribute="leading" secondItem="nHC-Pk-ZD5" secondAttribute="leading" id="KFt-cs-Zvb"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="59S-6G-SjZ" firstAttribute="trailing" secondItem="nHC-Pk-ZD5" secondAttribute="trailing" id="Aid-cP-4ms"/>
+                            <constraint firstItem="nHC-Pk-ZD5" firstAttribute="top" secondItem="59S-6G-SjZ" secondAttribute="top" constant="20" id="Zs1-sU-Sw4"/>
+                            <constraint firstItem="nHC-Pk-ZD5" firstAttribute="leading" secondItem="59S-6G-SjZ" secondAttribute="leading" id="b5Q-fu-WlI"/>
+                            <constraint firstItem="59S-6G-SjZ" firstAttribute="bottom" secondItem="nHC-Pk-ZD5" secondAttribute="bottom" id="e50-4D-zoy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="59S-6G-SjZ"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="0Yd-7f-c2e">
+                        <barButtonItem key="backBarButtonItem" title="none" id="WN3-6r-Xcb"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="hQl-Ke-8JH" id="v6c-9b-8ma"/>
+                        <outlet property="userLabel" destination="4bf-oN-EbC" id="sgS-Hb-xgV"/>
+                        <outlet property="userPhoto" destination="y2Q-NJ-ckl" id="fkZ-gW-8iY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="efh-X3-eRW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4355" y="1385"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="G9X-NL-zlH">

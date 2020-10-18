@@ -172,7 +172,6 @@ class HomeViewController: UITableViewController{
                                    let title  = data["quizTitle"] as? String,
                                    let desc = data["quizDescription"] as? String{
                                     let quiz = QuizModel(title: title, description: desc, author: author, authorUID: authorUID)
-                                    print(quiz)
                                     self.quizArrayRef.append(quiz)
                             }
                         }

@@ -248,6 +248,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             performSegue(withIdentifier: "SearchToQuiz", sender: self)
             tableView.deselectRow(at: indexPath, animated: true)
         } else {
+            performSegue(withIdentifier: "SearchToUser", sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
             
         }
         
@@ -260,7 +262,13 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                 destinationVC.author = quizArray[indexpath.row].authorUID
                 destinationVC.quizTitle = quizArray[indexpath.row].title
             }
-        } else{
+        } else if segue.identifier == "SearchToUser"{
+            let destinationVC = segue.destination as! PeopleViewController
+            if let indexpath = tableView.indexPathForSelectedRow{
+                destinationVC.authorName = self.userArray[indexpath.row].userName.capitalized
+                destinationVC.authorUID = self.userArray[indexpath.row].userUID
+                destinationVC.authorPhoto = self.usersPhotoArray[indexpath.row]
+            }
         }
     }
 }
