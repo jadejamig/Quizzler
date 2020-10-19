@@ -19,7 +19,7 @@ class SearchViewController: UIViewController{
     
     let db = Firestore.firestore()
     let storage = Storage.storage()
-    
+
     var quizzesFieldSelected: Bool = true {
         didSet{
             self.reloadTableData()
@@ -28,7 +28,9 @@ class SearchViewController: UIViewController{
     var userFieldSelected: Bool = false {
         didSet{
            self.reloadTableData()
-            print("usser a rray count is: \(self.userArray.count)")
+            print(self.userArray)
+            print("users photo count: \(self.usersPhotoArray.count)")
+//            print("users photoref count: \(self.usersPhotoArrayRef.count)")
         }
     }
 
@@ -37,8 +39,14 @@ class SearchViewController: UIViewController{
             self.reloadTableData()
         }
     }
-    var usersPhotoArray: [UIImage?] = [] {
+//    var usersPhotoArrayRef: [UIImage?] = [] {
+//        didSet{
+//            self.usersPhotoArray = self.usersPhotoArrayRef
+//        }
+//    }
+    var usersPhotoArray: [String:UIImage] = [:] {
         didSet{
+            
             self.reloadTableData()
         }
     }
@@ -55,6 +63,8 @@ class SearchViewController: UIViewController{
     var userArrayRef: [UserModel] = []
     var userArray: [UserModel] = [] {
         didSet{
+            
+            print("users array count: \(self.userArrayRef.count)")
             self.reloadTableData()
         }
     }
@@ -156,10 +166,12 @@ class SearchViewController: UIViewController{
                             }
                         }
                         self.userArray = self.userArrayRef
+//                        self.usersPhotoArray = self.usersPhotoArrayRef
                     }
                 }
             }
         }
+        self.reloadTableData()
     }
     
     private func loadQuizUserPhoto(userUID: String){
@@ -184,7 +196,7 @@ class SearchViewController: UIViewController{
                 print("There was an error in retrieveing user photo \(error.localizedDescription)")
             } else {
                 // Data for "images/island.jpg" is returned
-                self.usersPhotoArray.append(UIImage(data: data!))
+                self.usersPhotoArray[userUID] = UIImage(data: data!)
             }
         }
     }
@@ -235,7 +247,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             cell.authorLabel.text = self.userArray[indexPath.row].userName.capitalized
             
             if self.usersPhotoArray.count > indexPath.row{
-                cell.authorImageView.image = self.usersPhotoArray[indexPath.row]
+                cell.authorImageView.image = self.usersPhotoArray[self.userArray[indexPath.row].userUID]
             }
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell
@@ -261,13 +273,14 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             if let indexpath = tableView.indexPathForSelectedRow{
                 destinationVC.author = quizArray[indexpath.row].authorUID
                 destinationVC.quizTitle = quizArray[indexpath.row].title
+                destinationVC.sentFromPeopleVc = false
             }
         } else if segue.identifier == "SearchToUser"{
             let destinationVC = segue.destination as! PeopleViewController
             if let indexpath = tableView.indexPathForSelectedRow{
                 destinationVC.authorName = self.userArray[indexpath.row].userName.capitalized
                 destinationVC.authorUID = self.userArray[indexpath.row].userUID
-                destinationVC.authorPhoto = self.usersPhotoArray[indexpath.row]
+                destinationVC.authorPhoto = self.usersPhotoArray[self.userArray[indexpath.row].userUID]
             }
         }
     }
@@ -281,6 +294,7 @@ extension SearchViewController: UISearchBarDelegate{
             if searchText != ""{
                 self.searchQuizSubComp(searchKey: searchText.lowercased())
                 self.searchUser(searchKey: searchText.lowercased())
+
             }
             
         }

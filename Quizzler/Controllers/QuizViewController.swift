@@ -24,6 +24,7 @@ class QuizViewController: UIViewController {
     
     var author: String? = nil
     var quizTitle: String? = nil
+    var sentFromPeopleVc: Bool = false
     private var quizDict: [String: [String]] = [:]
     private var quizQuestions: [String] = []
     private var score: Int = 0
@@ -161,6 +162,7 @@ class QuizViewController: UIViewController {
         let destinationVC = segue.destination as! QuizResultViewController
         destinationVC.userScore = self.score
         destinationVC.numOfItems = self.quizCount
+        destinationVC.sentFromPeopleVc = self.sentFromPeopleVc
         
     }
     

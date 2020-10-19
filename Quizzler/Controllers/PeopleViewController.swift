@@ -27,11 +27,11 @@ class PeopleViewController: UIViewController {
             self.tableView.reloadData()            
         }
     }
-//    var userPhoto: UIImage? = nil {
-//        didSet{
-//            self.tableView.reloadData()
-//        }
-//    }
+    //    var userPhoto: UIImage? = nil {
+    //        didSet{
+    //            self.tableView.reloadData()
+    //        }
+    //    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +43,7 @@ class PeopleViewController: UIViewController {
         self.userPhoto.image = self.authorPhoto
         self.userLabel.text = self.authorName
         self.loadQuizzes()
+//        self.segue
     }
     
     
@@ -114,5 +115,18 @@ extension PeopleViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "PeopleToQuiz", sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! QuizViewController
+        if let indexpath = tableView.indexPathForSelectedRow{
+            destinationVC.author = quizArray[indexpath.row].authorUID
+            destinationVC.quizTitle = quizArray[indexpath.row].title
+            destinationVC.sentFromPeopleVc = true
+        }
+    }
     
 }

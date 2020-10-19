@@ -18,7 +18,7 @@ class QuizResultViewController: UIViewController {
     var remark: String = ""
     var numOfItems: Int = 0
     var userScore: Int = 0
-    
+    var sentFromPeopleVc: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +56,18 @@ class QuizResultViewController: UIViewController {
     }
     
     @IBAction func homeButtonPressed(_ sender: UIButton) {
-        self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.popToRootViewController(animated: true)
+        if self.sentFromPeopleVc{
+            self.navigationController?.navigationBar.isHidden = false
+            for controller in self.navigationController!.viewControllers as Array {
+                if controller.isKind(of: PeopleViewController.self){
+                    self.navigationController!.popToViewController(controller, animated: true)
+                }
+            }
+//            self.navigationController?.popViewController(animated: true)
+        } else {
+            self.navigationController?.navigationBar.isHidden = false
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+        
     }
 }
