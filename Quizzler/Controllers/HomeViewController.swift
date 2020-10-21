@@ -103,6 +103,7 @@ class HomeViewController: UITableViewController{
             if let indexpath = tableView.indexPathForSelectedRow{
                 destinationVC.author = quizArray[indexpath.row].authorUID
                 destinationVC.quizTitle = quizArray[indexpath.row].title
+                
             }
         } else{
         }

@@ -19,6 +19,7 @@
 		D2A32133251553E600590FCC /* CreateQuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A32132251553E600590FCC /* CreateQuizModel.swift */; };
 		D2A321352515E7BD00590FCC /* MyTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A321342515E7BD00590FCC /* MyTabBarController.swift */; };
 		D2A321372516CA7200590FCC /* ActivityIndicatorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A321362516CA7200590FCC /* ActivityIndicatorExtension.swift */; };
+		D2A879B5253FBD890048DCD3 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A879B4253FBD890048DCD3 /* BookmarkViewController.swift */; };
 		D2BE752B25132AD6001BBEAA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2BE752A25132AD6001BBEAA /* GoogleService-Info.plist */; };
 		D2BE752D25133412001BBEAA /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BE752C25133412001BBEAA /* RegisterViewController.swift */; };
 		D2C186DF2510C2E700BC68AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C186DE2510C2E700BC68AE /* AppDelegate.swift */; };
@@ -55,6 +56,7 @@
 		D2A32132251553E600590FCC /* CreateQuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizModel.swift; sourceTree = "<group>"; };
 		D2A321342515E7BD00590FCC /* MyTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTabBarController.swift; sourceTree = "<group>"; };
 		D2A321362516CA7200590FCC /* ActivityIndicatorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorExtension.swift; sourceTree = "<group>"; };
+		D2A879B4253FBD890048DCD3 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		D2BE752A25132AD6001BBEAA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D2BE752C25133412001BBEAA /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		D2C186DB2510C2E700BC68AE /* Quizzler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quizzler.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -173,6 +175,7 @@
 				D2A321362516CA7200590FCC /* ActivityIndicatorExtension.swift */,
 				D27C3833252784D200D30F67 /* SearchViewController.swift */,
 				D25D27152539B53800F6D874 /* PeopleViewController.swift */,
+				D2A879B4253FBD890048DCD3 /* BookmarkViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2A879B5253FBD890048DCD3 /* BookmarkViewController.swift in Sources */,
 				D2E0B69D2512DEF20051840C /* WelcomeViewController.swift in Sources */,
 				D26BA1AF2533DF5D00FA43A0 /* UserModel.swift in Sources */,
 				D2BE752D25133412001BBEAA /* RegisterViewController.swift in Sources */,

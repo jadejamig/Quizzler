@@ -21,6 +21,7 @@ class QuizViewController: UIViewController {
     @IBOutlet weak var choice3Button: UIButton!
     @IBOutlet weak var choice4Button: UIButton!
     @IBOutlet weak var progressBar: UIProgressView!
+    @IBOutlet weak var bookmarkButton: UIBarButtonItem!
     
     var author: String? = nil
     var quizTitle: String? = nil
@@ -28,7 +29,26 @@ class QuizViewController: UIViewController {
     private var quizDict: [String: [String]] = [:]
     private var quizQuestions: [String] = []
     private var score: Int = 0
-  
+    private var isQuizBookmarked: Bool = false {
+        didSet{
+            if self.isQuizBookmarked{
+                self.bookmarkButton.image = UIImage(systemName: "bookmark.fill")
+            } else {
+                self.bookmarkButton.image = UIImage(systemName: "bookmark")
+            }
+        }
+    }
+    private var bookmarkDict: [String:String] = [:] {
+        didSet{
+            if self.quizTitle != nil {
+                if bookmarkDict[self.quizTitle!] == self.author{
+                    self.isQuizBookmarked = true
+                }
+            }
+            
+        }
+    }
+    
     private var highScore: Int = 0
     private var quizCount: Int = 0 {
         didSet {
@@ -54,7 +74,7 @@ class QuizViewController: UIViewController {
         self.loadQuiz()
         self.progressBar.progress = 0.0
         self.scoreLAbel.text = "Score: 0"
-        
+        self.loadBookmark()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,7 +82,7 @@ class QuizViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.title = quizTitle
         self.scoreLAbel.text = "Score: 0"
-//        self.navigationController?.navigationBar.isHidden = false
+        //        self.navigationController?.navigationBar.isHidden = false
         
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -70,13 +90,26 @@ class QuizViewController: UIViewController {
         self.currentQuizNumber = 1
         self.score = 0
         self.updateUI()
-            }
+        
+    }
     // MARK: - Table view data source
     
     @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
-//        navigationController?.popViewController(animated: true)
-//        self.dismiss(animated: true, completion: nil)
+        //        navigationController?.popViewController(animated: true)
+        //        self.dismiss(animated: true, completion: nil)
         self.makeUIAlert()
+    }
+    @IBAction func bookmarkButtonPressed(_ sender: UIBarButtonItem) {
+        if self.quizTitle != nil && self.author != nil{
+            if self.isQuizBookmarked{
+                self.isQuizBookmarked = false
+                self.bookmarkDict.removeValue(forKey: self.quizTitle!)
+            } else {
+                self.isQuizBookmarked = true
+                self.bookmarkDict[self.quizTitle!] = self.author!
+            }
+            self.saveBookmark()
+        }
     }
     
     private func makeround(_ button: UIButton){
@@ -87,7 +120,7 @@ class QuizViewController: UIViewController {
     } 
     
     private func loadQuiz(){
-//        self.author = Auth.auth().currentUser?.uid
+        //        self.author = Auth.auth().currentUser?.uid
         if let userUID = self.author, let title = quizTitle{
             let quizRef = db.collection("Quizzes")
                 .whereField("authorUID", isEqualTo: userUID)
@@ -108,6 +141,37 @@ class QuizViewController: UIViewController {
                         }
                     }
                 }
+            }
+        }
+    }
+    
+    private func loadBookmark(){
+        if let userUID = self.author {
+            let bookmarkRef = db.collection("Bookmarks").document(userUID)
+            bookmarkRef.getDocument { (querySnapshot, error) in
+                if let error = error {
+                    print("There was an error retrieving bookmarks \(error.localizedDescription)")
+                } else {
+                    if let data = querySnapshot?.data() {
+                        if let retSavedQuiz = data["savedQuiz"] as? [String:String]{
+                            self.bookmarkDict = retSavedQuiz
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    private func saveBookmark(){
+        if let userUID = self.author {
+            self.db
+                .collection("Bookmarks").document(userUID)
+                .setData(["savedQuiz": self.bookmarkDict]) { (error) in
+                    if error != nil {
+                        print("There was an erorr saving bookmarks \(error!.localizedDescription)")
+                    } else {
+                        print("Successfully saved bookmarks")
+                    }
             }
         }
     }
@@ -177,6 +241,6 @@ class QuizViewController: UIViewController {
         alert.addAction(action2)
         self.present(alert, animated: true, completion: nil)
     }
- 
+    
     
 }
