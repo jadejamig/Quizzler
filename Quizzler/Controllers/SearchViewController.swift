@@ -30,23 +30,17 @@ class SearchViewController: UIViewController{
            self.reloadTableData()
             print(self.userArray)
             print("users photo count: \(self.usersPhotoArray.count)")
-//            print("users photoref count: \(self.usersPhotoArrayRef.count)")
         }
     }
 
-    var quizzesUserPhoto: [UIImage?] = [] {
+    var quizzesUserPhoto: [String:UIImage] = [:] {
         didSet{
             self.reloadTableData()
         }
     }
-//    var usersPhotoArrayRef: [UIImage?] = [] {
-//        didSet{
-//            self.usersPhotoArray = self.usersPhotoArrayRef
-//        }
-//    }
+
     var usersPhotoArray: [String:UIImage] = [:] {
         didSet{
-            
             self.reloadTableData()
         }
     }
@@ -112,6 +106,7 @@ class SearchViewController: UIViewController{
     }
 
     //MARK: - Query Firebase Methods
+    
     private func searchQuizSubComp(searchKey: String){
         self.quizArrayRef.removeAll()
         self.quizzesUserPhoto.removeAll()
@@ -183,7 +178,7 @@ class SearchViewController: UIViewController{
                 print("There was an error in retrieveing user photo \(error.localizedDescription)")
             } else {
                 // Data for "images/island.jpg" is returned
-                self.quizzesUserPhoto.append(UIImage(data: data!))
+                self.quizzesUserPhoto[userUID] = UIImage(data: data!)
             }
         }
     }
@@ -209,6 +204,7 @@ class SearchViewController: UIViewController{
 }
 
 //MARK: - TAble View Data Source Methods
+
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -218,7 +214,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             return self.userArray.count
         }
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -236,7 +231,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.descriptionLabel.text = quizArray[indexPath.row].description
             }
             if self.quizzesUserPhoto.count > indexPath.row{
-                cell.userPhoto.image = self.quizzesUserPhoto[indexPath.row]
+                cell.userPhoto.image = self.quizzesUserPhoto[self.quizArray[indexPath.row].authorUID]
             }
             
             cell.authorLabel.text = quizArray[indexPath.row].author.capitalized
@@ -245,6 +240,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "UserReusableCell", for: indexPath) as! UserTableViewCell
             cell.authorLabel.text = self.userArray[indexPath.row].userName.capitalized
+            
             
             if self.usersPhotoArray.count > indexPath.row{
                 cell.authorImageView.image = self.usersPhotoArray[self.userArray[indexPath.row].userUID]
@@ -262,9 +258,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             performSegue(withIdentifier: "SearchToUser", sender: self)
             tableView.deselectRow(at: indexPath, animated: true)
-            
         }
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -287,6 +281,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 //MARK: - Search View Delegate Methods
+
 extension SearchViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         

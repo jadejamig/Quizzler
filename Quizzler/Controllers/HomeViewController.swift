@@ -189,13 +189,7 @@ class HomeViewController: UITableViewController{
     }
     
     //MARK: - Activity Indicator Methods
-    
-//    func displayActivityIndicatorAlert() {
-//        activityIndicatorAlert = UIAlertController(title: "Creating Your Quiz",
-//                                                   message: "Waiting for cloud response",
-//                                                   preferredStyle:  UIAlertController.Style.alert)
-//        self.present(activityIndicatorAlert!, animated: true, completion: nil)
-//    }
+
     func dismissActivityIndicatorAlert(){
         activityIndicatorAlert?.dismissActivityIndicator()
     }

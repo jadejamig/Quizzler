@@ -27,11 +27,8 @@ class PeopleViewController: UIViewController {
             self.tableView.reloadData()            
         }
     }
-    //    var userPhoto: UIImage? = nil {
-    //        didSet{
-    //            self.tableView.reloadData()
-    //        }
-    //    }
+    
+    //MARK: - Lifecycle method
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,19 +40,11 @@ class PeopleViewController: UIViewController {
         self.userPhoto.image = self.authorPhoto
         self.userLabel.text = self.authorName
         self.loadQuizzes()
-//        self.segue
     }
     
+
+    //MARK: - Firestore retrieving of data
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     private func loadQuizzes(){
         
         
@@ -88,6 +77,8 @@ class PeopleViewController: UIViewController {
     
 }
 
+//MARK: - Table View Delegate and Data Source Extension
+
 extension PeopleViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return quizArray.count
@@ -119,6 +110,8 @@ extension PeopleViewController: UITableViewDelegate, UITableViewDataSource {
         performSegue(withIdentifier: "PeopleToQuiz", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    //MARK: - Pre Segue Method
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! QuizViewController

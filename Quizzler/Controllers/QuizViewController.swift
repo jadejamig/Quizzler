@@ -95,8 +95,6 @@ class QuizViewController: UIViewController {
     // MARK: - Table view data source
     
     @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
-        //        navigationController?.popViewController(animated: true)
-        //        self.dismiss(animated: true, completion: nil)
         self.makeUIAlert()
     }
     @IBAction func bookmarkButtonPressed(_ sender: UIBarButtonItem) {
@@ -113,11 +111,12 @@ class QuizViewController: UIViewController {
     }
     
     private func makeround(_ button: UIButton){
-        
         button.layer.cornerRadius = button.frame.size.height/2
         button.layer.borderWidth = 1.0
         button.layer.borderColor = UIColor.white.cgColor
     } 
+    
+    //MARK: - Query Firestore Methods
     
     private func loadQuiz(){
         //        self.author = Auth.auth().currentUser?.uid
@@ -146,7 +145,7 @@ class QuizViewController: UIViewController {
     }
     
     private func loadBookmark(){
-        if let userUID = self.author {
+        if let userUID = Auth.auth().currentUser?.uid {
             let bookmarkRef = db.collection("Bookmarks").document(userUID)
             bookmarkRef.getDocument { (querySnapshot, error) in
                 if let error = error {
@@ -163,10 +162,11 @@ class QuizViewController: UIViewController {
     }
     
     private func saveBookmark(){
-        if let userUID = self.author {
+        if let userUID = Auth.auth().currentUser?.uid{
+            let sortedYourArray = [String:String](uniqueKeysWithValues: self.bookmarkDict.sorted( by: { $0.0 < $1.0 }))
             self.db
                 .collection("Bookmarks").document(userUID)
-                .setData(["savedQuiz": self.bookmarkDict]) { (error) in
+                .setData(["savedQuiz": sortedYourArray]) { (error) in
                     if error != nil {
                         print("There was an erorr saving bookmarks \(error!.localizedDescription)")
                     } else {
@@ -175,6 +175,8 @@ class QuizViewController: UIViewController {
             }
         }
     }
+    
+    //MARK: - Update UI methods when clicking answer
     
     private func updateUI(){
         
